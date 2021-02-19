@@ -1,0 +1,9 @@
+@import '../../styles/abstract/abstracts';
+
+.app {
+  min-height: 100vh;
+
+  @include flex($flex-direction: column, $justify-content: space-between, $align-items: stretch);
+
+  text-align: center;
+}
