@@ -1,21 +1,21 @@
-export enum GameOptionsActionTypes {
+export enum GameSettingsActionTypes {
   SET_GAME_MUSIC_VOLUME = 'SET_GAME_MUSIC_VOLUME',
   SET_GAME_EFFECTS_VOLUME = 'SET_GAME_EFFECTS_VOLUME',
 }
 
 export interface ISetGameMusicVolume {
-  type: GameOptionsActionTypes.SET_GAME_MUSIC_VOLUME;
+  type: GameSettingsActionTypes.SET_GAME_MUSIC_VOLUME;
   payload: number;
 }
 
 export interface ISetGameEffectsVolume {
-  type: GameOptionsActionTypes.SET_GAME_EFFECTS_VOLUME;
+  type: GameSettingsActionTypes.SET_GAME_EFFECTS_VOLUME;
   payload: number;
 }
 
-export type GameOptionAction = ISetGameMusicVolume | ISetGameEffectsVolume;
+export type GameSettingsAction = ISetGameMusicVolume | ISetGameEffectsVolume;
 
-export interface IGameOptionsState {
+export interface IGameSettingsState {
   musicVolume: number;
   effectsVolume: number;
 };

@@ -1,17 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import s from './game-options.module.scss';
+import s from './login-page.module.scss';
 
-const GameOptions: React.FC = () => {
+const LoginPage: React.FC = () => {
   const state = useSelector(state => state);
   console.log(state);
 
   return (
     <div className={s.container}>
-      Game Options
+      Login Page
     </div>
   );
 }
 
-export default GameOptions;
+export default LoginPage;

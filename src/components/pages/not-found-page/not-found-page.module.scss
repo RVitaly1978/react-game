@@ -1,7 +1,10 @@
-@import '../../styles/abstract/abstracts';
+@import '../../../styles/abstract/abstracts';
 
 .container {
   padding: 1rem;
+
+  @include flex();
+
   background-color: $color-background-view;
 
   text-align: center;

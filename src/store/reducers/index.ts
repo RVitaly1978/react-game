@@ -1,7 +1,13 @@
 import { combineReducers } from 'redux';
 
-import gameOptionsReducer from './game-options-reducer';
+import gameSettingsReducer from './game-settings-reducer';
+import gameReducer from './game-reducer';
+import statisticsReducer from './statistics-reducer';
+import authReducer from './auth-reducer';
 
 export const rootReducer = combineReducers({
-  gameOptions: gameOptionsReducer,
+  auth: authReducer,
+  gameSettings: gameSettingsReducer,
+  game: gameReducer,
+  statistics: statisticsReducer,
 });

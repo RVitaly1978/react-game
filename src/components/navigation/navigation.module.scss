@@ -1,0 +1,19 @@
+@import '../../styles/abstract/abstracts';
+
+.navigation {
+  padding: 1rem;
+
+  @include flex();
+
+  background-color: $color-background-view;
+
+  text-align: center;
+}
+
+.link {
+  padding: 0.25rem;
+}
+
+.active {
+  background-color: coral;
+}
