@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
 
-import { registration } from '../../api';
-import { LOGIN_ROUTE } from '../../utils/constants';
+import { fetchUserRegistration } from '../../store/action-creators/auth';
+import { GAME_ROUTE, LOGIN_ROUTE } from '../../utils/constants';
+import { useTypedSelector } from '../hooks';
 
 import s from './registration-form.module.scss';
 
@@ -10,6 +12,10 @@ const RegistrationForm: React.FC = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const userAuthError = useTypedSelector(s => s.auth.userAuthError);
+  const dispatch = useDispatch();
+  // const history = useHistory();
 
   const handlePasswordVisibleToggle = () => {
     setIsPasswordVisible(s => !s);
@@ -27,14 +33,14 @@ const RegistrationForm: React.FC = () => {
     evt.preventDefault();
 
     if (email && password) {
-      const res = await registration(email, password);
-      // const { token } = res.data;
-      console.log(res);
+      dispatch(fetchUserRegistration(email, password));
+      // history.push(GAME_ROUTE);
     }
   };
 
   return (
     <form className={s.container} onSubmit={handleSubmit}>
+      {userAuthError && <div>{userAuthError}</div>}
 
       <div className={s.form_group}>
         <label htmlFor='email'>Email</label>

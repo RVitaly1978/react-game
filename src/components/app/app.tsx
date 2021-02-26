@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import Header from '../header';
 import Footer from '../footer';
-import Navigation from '../navigation';
+import Navbar from '../navbar';
 import AppRouter from '../app-router';
 
 import s from './app.module.scss';
@@ -13,7 +13,7 @@ const App: React.FC = () => {
     <Router>
       <div className={s.app}>
         <Header />
-        <Navigation />
+        <Navbar />
         <AppRouter />
         <Footer />
       </div>

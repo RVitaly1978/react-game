@@ -5,17 +5,20 @@ import {
 
 const initialState: IAuthState = {
   userId: null,
-  login: null,
+  userEmail: null,
+  userAuthError: null,
   isAuth: false,
 };
 
-const authReducer = (state = initialState, action: AuthAction): IAuthState => {
+export const authReducer = (state = initialState, action: AuthAction): IAuthState => {
   switch (action.type) {
-    case AuthActionTypes.SET_USER_DATA:
+    case AuthActionTypes.SET_USER_AUTH:
       return { ...state, ...action.payload, isAuth: true };
+    case AuthActionTypes.SET_USER_LOGOUT:
+      return { ...initialState };
+    case AuthActionTypes.SET_USER_AUTH_ERROR:
+      return { ...initialState, ...action.payload };
     default:
       return state;
   }
 };
-
-export default authReducer;

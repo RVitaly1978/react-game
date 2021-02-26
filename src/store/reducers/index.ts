@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import gameSettingsReducer from './game-settings-reducer';
 import gameReducer from './game-reducer';
 import statisticsReducer from './statistics-reducer';
-import authReducer from './auth-reducer';
+import { authReducer } from './auth-reducer';
 
 export const rootReducer = combineReducers({
   auth: authReducer,
@@ -11,3 +11,5 @@ export const rootReducer = combineReducers({
   game: gameReducer,
   statistics: statisticsReducer,
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
