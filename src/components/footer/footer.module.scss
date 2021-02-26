@@ -1,8 +1,9 @@
 @import '../../styles/abstract/abstracts';
 
 .footer {
+  margin-top: auto;
   padding: 1rem;
-  background-color: $color-background-view;
+  background-color: $color-text-dialog;
 
   text-align: center;
 }

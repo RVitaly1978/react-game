@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import s from './game-options-page.module.scss';
+import s from './game-settings-page.module.scss';
 
-const GameOptionsPage: React.FC = () => {
+const GameSettingsPage: React.FC = () => {
   const state = useSelector(state => state);
   console.log(state);
 
@@ -14,4 +14,4 @@ const GameOptionsPage: React.FC = () => {
   );
 }
 
-export default GameOptionsPage;
+export default GameSettingsPage;

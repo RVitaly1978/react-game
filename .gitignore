@@ -24,3 +24,4 @@ yarn-error.log*
 
 # temps
 bash.exe.stackdump
+.env

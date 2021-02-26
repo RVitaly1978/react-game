@@ -3,7 +3,7 @@
 .app {
   min-height: 100vh;
 
-  @include flex($flex-direction: column, $justify-content: space-between, $align-items: stretch);
+  @include flex($flex-direction: column, $justify-content: flex-start, $align-items: stretch);
 
   text-align: center;
 }

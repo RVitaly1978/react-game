@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import LoginForm from '../../components/login-form';
+
 import s from './login-page.module.scss';
 
 const LoginPage: React.FC = () => {
@@ -9,7 +11,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className={s.container}>
-      Login Page
+      <LoginForm />
     </div>
   );
 }

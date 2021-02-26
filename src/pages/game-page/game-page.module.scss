@@ -1,8 +1,10 @@
-@import '../../../styles/abstract/abstracts';
+@import '../../styles/abstract/abstracts';
 
 .container {
   padding: 1rem;
+  height: 100%;
 
+  flex-grow: 1;
   @include flex();
 
   background-color: $color-background-view;
