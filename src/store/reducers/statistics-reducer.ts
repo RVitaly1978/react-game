@@ -6,17 +6,18 @@ import {
 const initialState: IStatisticsState = {
   usersHighScores: [],
   userStatistics: [],
+  statisticsError: null,
 };
 
-const statisticsReducer = (state = initialState, action: StatisticsAction): IStatisticsState => {
+export const statisticsReducer = (state = initialState, action: StatisticsAction): IStatisticsState => {
   switch (action.type) {
     case StatisticsActionTypes.SET_USERS_HIGH_SCORES:
-      return { ...state, usersHighScores: action.payload };
+      return { ...state, ...action.payload, statisticsError: null };
     case StatisticsActionTypes.SET_USER_STATISTICS:
-      return { ...state, userStatistics: action.payload };
+      return { ...state, ...action.payload, statisticsError: null };
+    case StatisticsActionTypes.SET_STATISTICS_ERROR:
+      return { ...initialState, ...action.payload };
     default:
       return state;
   }
 };
-
-export default statisticsReducer;

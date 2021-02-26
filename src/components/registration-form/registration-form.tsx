@@ -15,7 +15,7 @@ const RegistrationForm: React.FC = () => {
 
   const userAuthError = useTypedSelector(s => s.auth.userAuthError);
   const dispatch = useDispatch();
-  // const history = useHistory();
+  const history = useHistory();
 
   const handlePasswordVisibleToggle = () => {
     setIsPasswordVisible(s => !s);
@@ -33,8 +33,8 @@ const RegistrationForm: React.FC = () => {
     evt.preventDefault();
 
     if (email && password) {
-      dispatch(fetchUserRegistration(email, password));
-      // history.push(GAME_ROUTE);
+      await dispatch(fetchUserRegistration(email, password));
+      history.push(GAME_ROUTE);
     }
   };
 

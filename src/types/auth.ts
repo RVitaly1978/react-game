@@ -5,12 +5,9 @@ export enum AuthActionTypes {
 };
 
 export interface IPayloadUserAuth {
-  userId: null | string;
-  userEmail: null | string;
-};
-
-export interface IPayloadUserAuthError {
-  userAuthError: null | string;
+  userId?: null | string;
+  userEmail?: null | string;
+  userAuthError?: null | string;
 };
 
 export interface ISetUserAuth {
@@ -24,7 +21,7 @@ export interface ISetUserLogout {
 
 export interface ISetUserAuthError {
   type: AuthActionTypes.SET_USER_AUTH_ERROR;
-  payload: IPayloadUserAuthError;
+  payload: IPayloadUserAuth;
 };
 
 export type AuthAction = ISetUserAuth | ISetUserLogout | ISetUserAuthError;
