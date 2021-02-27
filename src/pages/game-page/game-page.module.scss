@@ -5,7 +5,7 @@
   height: 100%;
 
   flex-grow: 1;
-  @include flex();
+  @include flex($flex-direction: column);
 
   background-color: $color-background-view;
 
@@ -15,4 +15,8 @@
     height: 100vh;
     width: 100vw;
   }
+}
+
+.controls {
+  margin-bottom: 1rem;
 }

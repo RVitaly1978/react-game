@@ -1,5 +1,7 @@
 import React from 'react';
 
+import GameCard from '../game-card';
+
 import s from './game-field.module.scss';
 
 const GameField: React.FC = () => {
@@ -10,7 +12,7 @@ const GameField: React.FC = () => {
 
   return (
     <section className={s.container}>
-      <div>Card</div>
+      <GameCard />
     </section>
   );
 }

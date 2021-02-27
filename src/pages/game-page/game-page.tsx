@@ -20,8 +20,11 @@ const GamePage: React.FC = () => {
 
   return (
     <div className={s.container} ref={containerRef}>
+      <div className={s.controls}>
+        <button onClick={handleFullScreenOpen}>full screen</button>
+      </div>
+
       <GameField />
-      <button onClick={handleFullScreenOpen}>full screen</button>
     </div>
   );
 }

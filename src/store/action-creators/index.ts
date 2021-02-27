@@ -6,6 +6,10 @@ import {
 } from './auth';
 
 import {
+  setInitialLoadingEnd,
+} from './game';
+
+import {
   fetchUserStatistics,
   fetchUsersHighScores,
 } from './statistics';
@@ -18,4 +22,6 @@ export {
 
   fetchUserStatistics,
   fetchUsersHighScores,
+
+  setInitialLoadingEnd,
 };
