@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 
-import { fetchUserRegistration } from '../../store/action-creators/auth';
+import { userRegistration } from '../../store/action-creators/auth';
 import { GAME_ROUTE, LOGIN_ROUTE } from '../../utils/constants';
 import { useTypedSelector } from '../hooks';
 
@@ -33,8 +33,12 @@ const RegistrationForm: React.FC = () => {
     evt.preventDefault();
 
     if (email && password) {
-      await dispatch(fetchUserRegistration(email, password));
-      history.push(GAME_ROUTE);
+      try {
+        await dispatch(userRegistration(email, password));
+        history.push(GAME_ROUTE);
+      } catch (e) {
+        return;
+      }
     }
   };
 

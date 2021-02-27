@@ -3,7 +3,7 @@ import { $host, $authHost } from './hosts';
 
 const REGISTRATION_ENDPOINT = '/registration';
 const LOGIN_ENDPOINT = '/login';
-const CHECK_ENDPOINT = '/login/auth';
+const CHECK_ENDPOINT = '/user/auth';
 
 export interface ITokenUserData {
   id: string;

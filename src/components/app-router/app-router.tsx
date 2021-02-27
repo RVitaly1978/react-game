@@ -1,9 +1,8 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import { authRoutes, publicRoutes } from './routes';
 import { useTypedSelector } from '../hooks';
-import { LOGIN_ROUTE } from '../../utils/constants';
 
 import NotFoundPage from '../../pages/not-found-page';
 
@@ -20,9 +19,7 @@ const AppRouter: React.FC = () => {
 
   return (
     <Switch>
-      {isAuth && aRoutes}
-      {pRoutes}
-      <Redirect to={LOGIN_ROUTE} />
+      {isAuth ? aRoutes : pRoutes}
       <Route component={NotFoundPage} />
     </Switch>
   );

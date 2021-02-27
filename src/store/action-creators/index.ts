@@ -1,7 +1,8 @@
 import {
-  setUserLogout,
-  fetchUserRegistration,
-  fetchUserLogin,
+  userLogout,
+  userRegistration,
+  userLogin,
+  checkUserLogged,
 } from './auth';
 
 import {
@@ -10,9 +11,11 @@ import {
 } from './statistics';
 
 export {
-  setUserLogout,
-  fetchUserRegistration,
-  fetchUserLogin,
+  userLogout,
+  userRegistration,
+  userLogin,
+  checkUserLogged,
+
   fetchUserStatistics,
   fetchUsersHighScores,
 };

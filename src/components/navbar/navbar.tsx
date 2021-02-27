@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 
 import { useTypedSelector } from '../hooks';
-import { setUserLogout } from '../../store/action-creators';
+import { userLogout } from '../../store/action-creators';
 
 import {
   LOGIN_ROUTE, GAME_ROUTE, SETTINGS_ROUTE, STATISTICS_ROUTE,
@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleExit = () => {
-    dispatch(setUserLogout());
+    dispatch(userLogout());
     history.push(LOGIN_ROUTE);
   }
 
