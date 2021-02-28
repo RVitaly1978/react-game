@@ -11,7 +11,7 @@ import s from './game-page.module.scss';
 
 const GamePage: React.FC = () => {
   // const isAuth = useTypedSelector(s => s.auth.isAuth);
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
 
   const handleFullScreenOpen = () => {

@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import s from './game-card.module.scss';
 
-const GameCard: React.FC = () => {
-  const [classes, setClasses] = useState(s.card);
+export interface GameCardProps {
+  id: number;
+  face?: string;
+  isFlipped: boolean;
+  isInactive: boolean;
+  onClick: (id: number) => void;
+}
 
-  useEffect(() => {
-    let timer: any = null;
-    if (classes === `${s.card} ${s.card__isFlipped}`) {
-      timer = setTimeout(() => {
-        setClasses(s.card);
-      }, 1000);
+const GameCard: React.FC<GameCardProps> = ({ id, isFlipped, isInactive, onClick }) => {
+  let cardClasses = isFlipped
+    ? `${s.card} ${s.card__isFlipped}`
+    : s.card;
+
+  let containerClasses = s.container;
+    if (isInactive) {
+      containerClasses = `${s.container} ${s.container__inactive}`;
+      cardClasses = `${s.card} ${s.card__isFlipped}`;
     }
 
-    return () => timer && clearTimeout(timer);
-  }, [classes]);
-
-  const handleClick = () => {
-    setClasses(`${s.card} ${s.card__isFlipped}`);
-  };
-
   return (
-    <div className={s.container}>
-      <div className={classes}>
-        <div className={s.card_face} onClick={handleClick}>FrontSide</div>
+    <div className={containerClasses}>
+      <div className={cardClasses}>
+        <div className={s.card_face} onClick={() => onClick(id)}>FrontSide</div>
         <div className={`${s.card_face} ${s.card_face__back}`}>BackSide</div>
       </div>
     </div>

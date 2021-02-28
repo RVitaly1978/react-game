@@ -1,8 +1,8 @@
 @import '../../styles/abstract/abstracts';
 
 .container {
-  width: 30rem;
-  height: 28rem;
+  width: 10rem;
+  height: 15rem;
 
   border-radius: 1rem;
 
@@ -13,7 +13,7 @@
   &__inactive {
     filter: opacity(0.4) grayscale(80%);
     pointer-events: none;
-    @extend %transition-hover;
+    @extend %transition-inactive;
   }
 }
 
@@ -42,10 +42,6 @@
       box-shadow: 0 0 3px 2px $color-hover;
     }
   }
-
-  // &:active {
-  //   box-shadow: 0 10px 10px $color-hover;
-  // }
 }
 
 .card_face {
@@ -61,13 +57,17 @@
   align-items: center;
 
   border-radius: inherit;
-  box-shadow: 4px 4px 5px 0 $color-shadow, 4px 4px 10px 0 $color-shadow-light;
+  box-shadow: 0 0 4px 2px $color-shadow, 0 0 6px 3px $color-shadow-light;
 
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 
+  background-color: brown;
+
   &__back {
     transform: rotateY(180deg);
+
+    background-color: chocolate;
   }
 }
