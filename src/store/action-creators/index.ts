@@ -7,6 +7,16 @@ import {
 
 import {
   setInitialLoadingEnd,
+  setNewGame,
+  setIsEndGame,
+  setIsPauseGame,
+  setTimeCount,
+  setMoveCount,
+  setGamePair,
+  setGameFlipped,
+  setGameInactive,
+  setGameTic,
+  // setCardClicked,
 } from './game';
 
 import {
@@ -24,4 +34,14 @@ export {
   fetchUsersHighScores,
 
   setInitialLoadingEnd,
+  setNewGame,
+  setIsEndGame,
+  setIsPauseGame,
+  setTimeCount,
+  setMoveCount,
+  setGamePair,
+  setGameFlipped,
+  setGameInactive,
+  setGameTic,
+  // setCardClicked,
 };

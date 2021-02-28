@@ -1,7 +1,7 @@
 import { ThunkDispatch } from 'redux-thunk';
 
 import { login, check, registration } from '../../api';
-import { setInitialLoadingEnd } from './game';
+import { setInitialLoadingEnd, setNewGame } from './game';
 import {
   AuthActionTypes,
   ISetUserAuth,
@@ -34,9 +34,10 @@ export const setUserLogout = (): ISetUserLogout => ({
 });
 
 export const userLogout = () => {
-  return (dispatch: ThunkDispatch<IAuthState, void, AuthAction>) => {
+  return (dispatch: ThunkDispatch<IAuthState, void, AuthAction | GameAction>) => {
     localStorage.removeItem('react-game-token');
     localStorage.removeItem('react-game-data');
+    dispatch(setNewGame());
     dispatch(setUserLogout());
   }
 };
