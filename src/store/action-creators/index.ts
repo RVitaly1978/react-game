@@ -26,6 +26,11 @@ import {
   fetchUsersHighScores,
 } from './statistics';
 
+import {
+  setAllUserSettings,
+  saveUserSettings,
+} from './settings';
+
 export {
   initialization,
 
@@ -46,4 +51,7 @@ export {
   setGameFlipped,
   setGameInactive,
   setGameTic,
+
+  setAllUserSettings,
+  saveUserSettings,
 };

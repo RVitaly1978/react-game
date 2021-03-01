@@ -1,6 +1,7 @@
 import { ThunkDispatch } from 'redux-thunk';
 
 import { login, registration } from '../../api';
+import { setAllUserSettings } from './settings';
 import { setNewGame } from './game';
 import {
   AuthActionTypes,
@@ -9,9 +10,9 @@ import {
   ISetUserLogout,
   AuthAction,
   IAuthState } from '../../types/auth';
-import {
-  GameAction,
-} from '../../types/game';
+import { GameAction } from '../../types/game';
+import { GameSettingsAction } from './../../types/game-settings';
+import { RootState } from '../reducers';
 
 export const setUserAuth = (id: string, email: string): ISetUserAuth => ({
   type: AuthActionTypes.SET_USER_AUTH,
@@ -43,10 +44,11 @@ export const userLogout = () => {
 };
 
 export const userLogin = (email: string, password: string) => {
-  return async (dispatch: ThunkDispatch<IAuthState, void, AuthAction>) => {
+  return async (dispatch: ThunkDispatch<IAuthState, void, AuthAction | GameSettingsAction>) => {
     try {
-      const { id } = await login(email, password);
+      const { id, settings } = await login(email, password);
       dispatch(setUserAuth(id, email));
+      dispatch(setAllUserSettings(settings));
     } catch (e) {
       dispatch(setUserAuthError(e.response.data.message));
       throw new Error();
@@ -55,9 +57,10 @@ export const userLogin = (email: string, password: string) => {
 };
 
 export const userRegistration = (email: string, password: string) => {
-  return async (dispatch: ThunkDispatch<IAuthState, void, AuthAction>) => {
+  return async (dispatch: ThunkDispatch<IAuthState, void, AuthAction>, getState: () => RootState) => {
+    const { gameSettings } = getState();
     try {
-      const { id } = await registration(email, password);
+      const { id } = await registration(email, password, gameSettings);
       dispatch(setUserAuth(id, email));
     } catch (e) {
       dispatch(setUserAuthError(e.response.data.message));
