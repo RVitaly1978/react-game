@@ -1,8 +1,11 @@
 import {
+  initialization,
+} from './init';
+
+import {
   userLogout,
   userRegistration,
   userLogin,
-  checkUserLogged,
 } from './auth';
 
 import {
@@ -10,13 +13,12 @@ import {
   setNewGame,
   setIsEndGame,
   setIsPauseGame,
-  setTimeCount,
+  updateTimeCount,
   setMoveCount,
   setGamePair,
   setGameFlipped,
   setGameInactive,
   setGameTic,
-  // setCardClicked,
 } from './game';
 
 import {
@@ -25,10 +27,11 @@ import {
 } from './statistics';
 
 export {
+  initialization,
+
   userLogout,
   userRegistration,
   userLogin,
-  checkUserLogged,
 
   fetchUserStatistics,
   fetchUsersHighScores,
@@ -37,11 +40,10 @@ export {
   setNewGame,
   setIsEndGame,
   setIsPauseGame,
-  setTimeCount,
+  updateTimeCount,
   setMoveCount,
   setGamePair,
   setGameFlipped,
   setGameInactive,
   setGameTic,
-  // setCardClicked,
 };

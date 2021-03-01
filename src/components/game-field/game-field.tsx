@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import {
   setNewGame, setIsPauseGame,
-  setTimeCount, setGameTic, setGameFlipped } from '../../store/action-creators';
+  updateTimeCount, setGameTic, setGameFlipped } from '../../store/action-creators';
 import { useTypedSelector } from '../hooks';
 import { CARD_FACE_DELAY } from '../../utils/constants';
 
@@ -32,7 +32,7 @@ const GameField: React.FC = () => {
     let timer: number | null = null;
     if (!isEndGame && !isPauseGame) {
       timer = window.setInterval(() => {
-        dispatch(setTimeCount());
+        dispatch(updateTimeCount());
       }, 1000);
     }
     return () => {timer && clearInterval(timer)};

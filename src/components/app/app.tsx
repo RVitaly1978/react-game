@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { checkUserLogged } from '../../store/action-creators';
+import { initialization } from '../../store/action-creators';
 import { useTypedSelector } from '../hooks';
 
 import Header from '../header';
@@ -16,7 +16,7 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkUserLogged());
+    dispatch(initialization());
   }, [dispatch]);
 
   if (isLoading) {

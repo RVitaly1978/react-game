@@ -1,6 +1,7 @@
 export enum GameActionTypes {
   SET_INITIAL_LOADING_END = 'SET_INITIAL_LOADING_END',
   SET_NEW_GAME = 'SET_NEW_GAME',
+  SET_SAVED_GAME = 'SET_SAVED_GAME',
   SET_IS_END_GAME = 'SET_IS_END_GAME',
   SET_IS_PAUSE_GAME = 'SET_IS_PAUSE_GAME',
   SET_GAME_TIME_COUNT = 'SET_GAME_TIME_COUNT',
@@ -16,6 +17,13 @@ export interface ISetInitialLoadingEnd {
 
 export interface ISetNewGame {
   type: GameActionTypes.SET_NEW_GAME;
+};
+
+export interface ISetSavedGame {
+  type: GameActionTypes.SET_SAVED_GAME;
+  payload: {
+    game: IGameState;
+  };
 };
 
 export interface ISetIsEndGame {
@@ -59,7 +67,7 @@ export interface ISetGameInactive {
 };
 
 export type GameAction = ISetInitialLoadingEnd
-  | ISetIsEndGame | ISetGamePair | ISetIsPauseGame | ISetNewGame
+  | ISetIsEndGame | ISetGamePair | ISetIsPauseGame | ISetNewGame | ISetSavedGame
   | ISetGameTimeCount | ISetGameMoveCount | ISetGameInactive | ISetGameFlipped;
 
 export interface IGameCard {

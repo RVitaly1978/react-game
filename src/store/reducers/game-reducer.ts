@@ -43,6 +43,9 @@ const gameReducer = (state = initialState, action: GameAction): IGameState => {
         isPauseGame: false,
       };
 
+    case GameActionTypes.SET_SAVED_GAME:
+      return action.payload.game;
+
     case GameActionTypes.SET_IS_END_GAME:
       return { ...state, isEndGame: true };
 

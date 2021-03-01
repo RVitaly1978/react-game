@@ -12,6 +12,7 @@ import {
   ISetIsEndGame,
   ISetIsPauseGame,
   ISetNewGame} from '../../types/game';
+import { saveToLocalStorage } from '../../utils/save-to-localStorage';
 
 export const setInitialLoadingEnd = (): ISetInitialLoadingEnd => ({
   type: GameActionTypes.SET_INITIAL_LOADING_END,
@@ -53,9 +54,21 @@ export const setGameInactive = (inactive: number[]): ISetGameInactive => ({
   payload: { inactive },
 });
 
+export const updateTimeCount = () => {
+  return (dispatch: Dispatch<any>, getState: () => RootState ) => {
+    const { game, gameSettings } = getState();
+
+    dispatch(setTimeCount());
+
+    game.timeCount = game.timeCount + 1;
+    saveToLocalStorage(game, gameSettings);
+  };
+};
+
 export const setGameTic = (id: number) => {
   return (dispatch: Dispatch<any>, getState: () => RootState ) => {
-    const { cards, pair, flipped, inactive, isEndGame } = getState().game;
+    const { game, gameSettings } = getState();
+    const { cards, pair, flipped, inactive, isEndGame } = game;
     const active = [...pair, id];
 
     if (active.length >= 2) {
@@ -76,5 +89,7 @@ export const setGameTic = (id: number) => {
     } else {
       dispatch(setGamePair([...active]));
     }
+
+    saveToLocalStorage(game, gameSettings);
   };
 };
