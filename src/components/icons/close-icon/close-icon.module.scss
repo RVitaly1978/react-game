@@ -1,4 +1,4 @@
-@import '../../../styles/sass/abstract/abstracts';
+@import '../../../styles/abstract/abstracts';
 
 $line-height: 0.1em;
 
@@ -29,7 +29,7 @@ $line-height: 0.1em;
   width: 1em;
   height: $line-height;
 
-  background-color: $color-border-view;
+  background-color: currentColor;
 
   border-radius: calc(0.5 * #{$line-height});
 

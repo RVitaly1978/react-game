@@ -2,7 +2,7 @@ import { ThunkDispatch } from 'redux-thunk';
 
 import { login, registration } from '../../api';
 import { setAllUserSettings } from './settings';
-import { setNewGame } from './game';
+import { setNewGame, setIsPauseGame, setIsGameInProgress } from './game';
 import {
   AuthActionTypes,
   ISetUserAuth,
@@ -43,20 +43,21 @@ export const setUserLogout = (): ISetUserLogout => ({
 
 export const userLogout = () => {
   return (dispatch: ThunkDispatch<IAuthState, void, AuthAction | GameAction>) => {
+    dispatch(setUserLogout());
     localStorage.removeItem('react-game-token');
     localStorage.removeItem('react-game-data');
-    dispatch(setNewGame());
-    dispatch(setUserLogout());
   }
 };
 
 export const userLogin = (email: string, password: string) => {
-  return async (dispatch: ThunkDispatch<IAuthState, void, AuthAction | GameSettingsAction>) => {
+  return async (dispatch: ThunkDispatch<IAuthState, void, AuthAction | GameSettingsAction | GameAction>) => {
     try {
       dispatch(setUserAuthFetch());
       const { id, settings } = await login(email, password);
       dispatch(setUserAuth(id, email));
       dispatch(setAllUserSettings(settings));
+      dispatch(setNewGame());
+      dispatch(setIsGameInProgress(false));
     } catch (e) {
       dispatch(setUserAuthError(e.response.data.message));
       throw new Error();
@@ -65,12 +66,14 @@ export const userLogin = (email: string, password: string) => {
 };
 
 export const userRegistration = (email: string, password: string) => {
-  return async (dispatch: ThunkDispatch<IAuthState, void, AuthAction>, getState: () => RootState) => {
+  return async (dispatch: ThunkDispatch<IAuthState, void, AuthAction | GameAction>, getState: () => RootState) => {
     const { gameSettings } = getState();
     try {
       dispatch(setUserAuthFetch());
       const { id } = await registration(email, password, gameSettings);
       dispatch(setUserAuth(id, email));
+      dispatch(setNewGame());
+      dispatch(setIsGameInProgress(false));
     } catch (e) {
       dispatch(setUserAuthError(e.response.data.message));
       throw new Error();

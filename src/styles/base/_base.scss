@@ -75,10 +75,6 @@ h2, h3 {
   color: inherit;
   text-align: left;
 
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
   @include media-landscape {
     font-size: 1.8rem;
   }
@@ -122,6 +118,28 @@ button, a {
 
   cursor: pointer;
   user-select: none;
+}
+
+button {
+  padding: 1rem 2rem;
+
+  background-color: $color-shadow-light;
+  border-radius: $btn-border-radius;
+  color: firebrick;
+
+  @extend %transition-hover;
+
+  @include media-hover {
+    &:hover {
+      background-color: $color-link;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: none;
+    pointer-events: none;
+  }
 }
 
 input {

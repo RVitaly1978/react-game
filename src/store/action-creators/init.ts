@@ -2,7 +2,7 @@ import { ThunkDispatch } from 'redux-thunk';
 
 import { setAllUserSettings } from './settings';
 import { check } from '../../api';
-import { setInitialLoadingEnd } from './game';
+import { setInitialLoadingEnd, setIsPauseGame } from './game';
 import { setUserAuth, setUserLogout } from './auth';
 import { AuthAction, IAuthState } from '../../types/auth';
 import { GameSettingsAction } from './../../types/game-settings';
@@ -29,6 +29,7 @@ export const initialization = () => {
         const data = JSON.parse(saved);
         dispatch(setSavedGame(data.game));
         dispatch(setAllUserSettings(data.settings));
+        dispatch(setIsPauseGame(true));
       }
     } catch (e) {
       dispatch(setUserLogout());

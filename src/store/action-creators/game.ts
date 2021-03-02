@@ -11,6 +11,7 @@ import {
   ISetInitialLoadingEnd, 
   ISetIsEndGame,
   ISetIsPauseGame,
+  ISetIsGameInProgress,
   ISetNewGame} from '../../types/game';
 import { saveToLocalStorage } from '../../utils/save-to-localStorage';
 
@@ -29,6 +30,22 @@ export const setIsEndGame = (): ISetIsEndGame => ({
 export const setIsPauseGame = (isPauseGame: boolean): ISetIsPauseGame => ({
   type: GameActionTypes.SET_IS_PAUSE_GAME,
   payload: { isPauseGame },
+});
+
+export const pauseGame = (isPauseGame: boolean) => {
+  return (dispatch: Dispatch<any>, getState: () => RootState ) => {
+    const { game, gameSettings } = getState();
+
+    dispatch(setIsPauseGame(isPauseGame));
+
+    game.isPauseGame = isPauseGame;
+    saveToLocalStorage(game, gameSettings);
+  };
+};
+
+export const setIsGameInProgress = (isGameInProgress: boolean): ISetIsGameInProgress => ({
+  type: GameActionTypes.SET_IS_GAME_IN_PROGRESS,
+  payload: { isGameInProgress },
 });
 
 export const setTimeCount = (): ISetGameTimeCount => ({

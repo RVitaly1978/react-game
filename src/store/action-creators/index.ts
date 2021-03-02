@@ -20,6 +20,8 @@ import {
   setGameFlipped,
   setGameInactive,
   setGameTic,
+  setIsGameInProgress,
+  pauseGame,
 } from './game';
 
 import {
@@ -53,6 +55,8 @@ export {
   setGameFlipped,
   setGameInactive,
   setGameTic,
+  setIsGameInProgress,
+  pauseGame,
 
   setAllUserSettings,
   saveUserSettings,

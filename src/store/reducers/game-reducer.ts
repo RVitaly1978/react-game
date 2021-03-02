@@ -21,7 +21,8 @@ const shuffled = shuffleArray(cards);
 const initialState: IGameState = {
   isInitialLoading: true,
   cards: shuffled,
-  isPauseGame: true,
+  isPauseGame: false,
+  isGameInProgress: true,
   isEndGame: false,
   flipped: [...shuffled.map(({ id }) => id)],
   pair: [],
@@ -40,16 +41,18 @@ const gameReducer = (state = initialState, action: GameAction): IGameState => {
         ...initialState,
         isInitialLoading: state.isInitialLoading,
         cards: shuffleArray(cards),
-        isPauseGame: false,
       };
 
     case GameActionTypes.SET_SAVED_GAME:
       return action.payload.game;
 
     case GameActionTypes.SET_IS_END_GAME:
-      return { ...state, isEndGame: true };
+      return { ...state, isEndGame: true, isGameInProgress: false };
 
     case GameActionTypes.SET_IS_PAUSE_GAME:
+      return { ...state, ...action.payload };
+
+    case GameActionTypes.SET_IS_GAME_IN_PROGRESS:
       return { ...state, ...action.payload };
 
     case GameActionTypes.SET_GAME_TIME_COUNT:
