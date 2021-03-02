@@ -6,10 +6,10 @@ import s from './header.module.scss';
 
 const Header: React.FC = () => {
   return (
-    <div className={s.header}>
-      <div>React-game</div>
+    <header className={s.header}>
+      <h1 className={s.logo}>Memory</h1>
       <Navbar />
-    </div>
+    </header>
   );
 }
 

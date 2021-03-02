@@ -8,6 +8,7 @@ import { useTypedSelector } from '../hooks';
 import Header from '../header';
 import Footer from '../footer';
 import AppRouter from '../app-router';
+import { BounceLoader } from '../bounce-loader/bounce-loader';
 
 import s from './app.module.scss';
 
@@ -20,15 +21,23 @@ const App: React.FC = () => {
   }, [dispatch]);
 
   if (isLoading) {
-    return (<div>Loading...</div>)
+    return (
+      <div className={s.app}>
+        <div className={s.app_content}>
+          <BounceLoader />
+        </div>
+      </div>
+    );
   }
 
   return (
     <Router>
       <div className={s.app}>
-        <Header />
-        <AppRouter />
-        <Footer />
+        <div className={s.app_content}>
+          <Header />
+          <AppRouter />
+          <Footer />
+        </div>
       </div>
     </Router>
   );

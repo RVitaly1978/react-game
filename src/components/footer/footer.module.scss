@@ -1,9 +1,63 @@
 @import '../../styles/abstract/abstracts';
 
 .footer {
-  margin-top: auto;
-  padding: 1rem;
-  background-color: $color-text-dialog;
+  position: relative;
 
-  text-align: center;
+  width: 100%;
+  height: $footer-hight;
+  margin-top: 0.5rem;
+  padding: 0.5rem 2rem;
+
+  @include flex($justify-content: space-between);
+
+  background-color: $color-background-view;
+
+  border: $border;
+  border-radius: $radius-border-view;
+
+  user-select: none;
+
+  @include media-surface {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  // &__fullscreen {
+  //   @include media-landscape {
+  //     display: none;
+
+  //     @include media-tabletHight {
+  //       display: flex;
+  //     }
+  //   }
+
+  //   @include media-surface {
+  //     display: none;
+  //   }
+  // }
+}
+
+.footer_link {
+  @include flex();
+
+  color: $color-link;
+
+  text-decoration: none;
+
+  @extend %transition-hover;
+
+  @include media-hover {
+    &:hover {
+      color: $color-link-hover;
+      outline: none;
+    }
+  }
+}
+
+.footer_icon__github {
+  @include size(3rem);
+}
+
+.footer_icon__rss {
+  @include size(8.1rem, 3rem);
 }

@@ -1,0 +1,71 @@
+@import '../../../styles/abstract/abstracts';
+
+$line-height: 2px;
+$line-width: 0.4em;
+
+.icon_container {
+  position: relative;
+
+  @include size(100%);
+  padding: calc((100% - 1em) * 0.5);
+
+  font-size: inherit;
+  line-height: 1;
+
+  border: none;
+  background-color: inherit;
+  border-radius: inherit;
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+.icon_corner {
+  position: absolute;
+
+  @include size(1em);
+
+  font-size: inherit;
+
+  border-radius: inherit;
+
+  pointer-events: none;
+
+  &:nth-child(2) {
+    transform: rotate(90deg);
+  }
+
+  &:nth-child(3) {
+    transform: rotate(180deg);
+  }
+
+  &:nth-child(4) {
+    transform: rotate(270deg);
+  }
+}
+
+.icon_line {
+  position: absolute;
+
+  display: inline-block;
+
+  width: $line-width;
+  height: $line-height;
+
+  background-color: $color-border-view;
+
+  border-radius: calc(0.5 * #{$line-height});
+
+  &:first-child {
+    top: 60%;
+    left: 60%;
+  }
+
+  &:last-child {
+    transform-origin: left top;
+    top: 60%;
+    left: 60%;
+    transform: rotate(90deg) translate(0, -$line-height);
+  }
+}

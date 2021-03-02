@@ -1,9 +1,45 @@
 @import '../../styles/abstract/abstracts';
 
 .app {
-  min-height: 100vh;
+  width: 100%;
+}
 
-  @include flex($flex-direction: column, $justify-content: flex-start, $align-items: stretch);
+.app_content {
+  position: relative;
 
-  text-align: center;
+  @include flex($flex-direction: column);
+
+  width: 100%;
+  max-width: $content-width-wide;
+  height: 100vh;
+
+  margin: 0 auto;
+  padding: 0.5rem $padding-wide 0.5rem;
+
+  @extend %animation-fadeIn;
+
+  @include media-wide {
+    max-width: unset;
+    padding-left: $padding-wide;
+    padding-right: $padding-wide;
+  }
+
+  @include media-laptop {
+    padding-left: $padding-laptop;
+    padding-right: $padding-laptop;
+  }
+
+  @include media-tablet {
+    padding-left: $padding-tablet;
+    padding-right: $padding-tablet;
+  }
+
+  @include media-landscape {
+    padding-left: $padding-landscape;
+    padding-right: $padding-landscape;
+  }
+
+  @include media-surface {
+    padding: 0;
+  }
 }

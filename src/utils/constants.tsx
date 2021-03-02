@@ -5,3 +5,9 @@ export const STATISTICS_ROUTE: string = '/statistics';
 export const SETTINGS_ROUTE: string = '/settings';
 
 export const CARD_FACE_DELAY: number = 1000;
+
+export const footer = {
+  authorGitHubLink: 'https://github.com/RVitaly1978',
+  authorGitHubText: 'RVitaly1978',
+  rssLink: 'https://rs.school/js/',
+};

@@ -16,17 +16,15 @@ const Navbar: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleExit = () => {
+  const handleExit = (evt: React.MouseEvent<HTMLAnchorElement>) => {
+    evt.preventDefault();
+
     dispatch(userLogout());
     history.push(LOGIN_ROUTE);
   }
 
   if (!isAuth) {
-    return (
-      <nav>
-        <NavLink to={LOGIN_ROUTE}>Authorization</NavLink>
-      </nav>
-    );
+    return null;
   }
 
   return (
@@ -42,7 +40,7 @@ const Navbar: React.FC = () => {
           <NavLink to={STATISTICS_ROUTE} activeClassName={s.active} >Statistics</NavLink>
         </li>
         <li className={s.link}>
-          <button onClick={handleExit}>Exit</button>
+          <NavLink to={LOGIN_ROUTE} onClick={handleExit} activeClassName={s.active} >Logout</NavLink>
         </li>
       </ul>
     </nav>

@@ -1,15 +1,27 @@
 @import '../../styles/abstract/abstracts';
 
-.container {
-  padding: 1rem;
-  height: 100%;
+$main-height: calc(100vh - #{$header-hight} - #{$footer-hight} - 4 * 0.5rem);
+$main-height-surface: calc(100vh - #{$header-hight-surface} - #{$footer-hight} - 2 * 0.5rem);
 
-  flex-grow: 1;
+.container {
+  position: relative;
+
+  width: 100%;
+  height: $main-height;
+  margin-top: 0.5rem;
+
   @include flex($flex-direction: column);
 
-  background-color: $color-background-view;
+  @include media-surface {
+    height: $main-height-surface;
+    padding-left: $padding-surface;
+    padding-right: $padding-surface;
+  }
 
-  text-align: center;
+  @include media-mobile {
+    padding-left: $padding-mobile;
+    padding-right: $padding-mobile;
+  }
 
   :fullscreen & {
     height: 100vh;
@@ -17,6 +29,21 @@
   }
 }
 
-.controls {
-  margin-bottom: 1rem;
+.wrapper_button {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  z-index: 1000;
+
+  @include size(3rem);
+
+  font-size: 1.5rem;
+
+  border-radius: $btn-border-radius;
+}
+
+.wrapper_button_icon {
+  font-size: inherit;
+  color: firebrick;
 }

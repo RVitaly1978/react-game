@@ -83,8 +83,12 @@ const GameField: React.FC = () => {
   return (
     <section className={s.container}>
       {controls}
+
       <div>{timeCount} {moveCount}</div>
-      {Cards}
+
+      <div className={s.cards_container}>
+        {Cards}
+      </div>
     </section>
   );
 }

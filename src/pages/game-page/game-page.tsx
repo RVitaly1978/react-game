@@ -1,18 +1,15 @@
 import React, { useRef } from 'react';
-import { Redirect } from 'react-router';
 
-import { useTypedSelector } from '../../components/hooks';
-import { LOGIN_ROUTE } from '../../utils/constants';
 import screenModeChange from '../../utils/screen-mode-change';
+import { FullscreenOpenIcon } from '../../components/icons';
+import Button from '../../components/button';
 
 import GameField from '../../components/game-field';
 
 import s from './game-page.module.scss';
 
 const GamePage: React.FC = () => {
-  // const isAuth = useTypedSelector(s => s.auth.isAuth);
   const containerRef = useRef<HTMLDivElement | null>(null);
-
 
   const handleFullScreenOpen = () => {
     containerRef.current && screenModeChange(containerRef.current);
@@ -20,9 +17,10 @@ const GamePage: React.FC = () => {
 
   return (
     <div className={s.container} ref={containerRef}>
-      <div className={s.controls}>
-        <button onClick={handleFullScreenOpen}>full screen</button>
-      </div>
+      <Button
+        styleClass={s.wrapper_button}
+        onClick={handleFullScreenOpen}
+        icon={<FullscreenOpenIcon styleClass={s.wrapper_button_icon} />} />
 
       <GameField />
     </div>
