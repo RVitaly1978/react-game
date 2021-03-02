@@ -5,7 +5,7 @@ import {
   setNewGame, pauseGame,
   updateTimeCount, setGameTic, setGameFlipped } from '../../store/action-creators';
 import { useTypedSelector } from '../hooks';
-import { CARD_FACE_DELAY } from '../../utils/constants';
+import { delays, FIELD_BIG } from '../../utils/constants';
 
 import { TimeField } from './time-field';
 import { MovesField } from './moves-field';
@@ -20,8 +20,11 @@ import s from './game-field.module.scss';
 const GameField: React.FC = () => {
   const dispatch = useDispatch();
   const {
-    cards, flipped, inactive, moveCount, timeCount, isEndGame, isPauseGame, isGameInProgress,
+    cards, flipped, inactive, moveCount, timeCount,
+    isEndGame, isPauseGame, isGameInProgress, speed, field,
   } = useTypedSelector(s => s.game);
+
+  const delay: number = delays[speed];
 
   useEffect(() => {
     dispatch(pauseGame(true));
@@ -30,10 +33,10 @@ const GameField: React.FC = () => {
   useEffect(() => {
     const timer: number = window.setInterval(() => {
       dispatch(setGameFlipped([]));
-    }, CARD_FACE_DELAY);
+    }, delay);
 
     return () => {clearInterval(timer)};
-  }, [dispatch]);
+  }, [dispatch, delay]);
 
   useEffect(() => {
     let timer: number | null = null;
@@ -46,6 +49,7 @@ const GameField: React.FC = () => {
   }, [isEndGame, isPauseGame, dispatch]);
 
   const handleCardClick = (id: number) => {
+    console.log(id);
     dispatch(setGameFlipped([...flipped, id]));
     dispatch(setGameTic(id));
   };
@@ -68,10 +72,15 @@ const GameField: React.FC = () => {
     return <GameCard key={id}
       id={id}
       face={face}
+      delay={delay}
       isFlipped={isFlipped}
       isInactive={isInactive}
       onClick={isPauseGame ? undefined : (() => handleCardClick(id))} />;
   });
+
+  const classes = (field === FIELD_BIG)
+    ? s.big
+    : s.small;
 
   return (
     <section className={s.container}>
@@ -97,7 +106,7 @@ const GameField: React.FC = () => {
         <MovesField value={moveCount} />
       </div>
 
-      <div className={s.cards_container}>
+      <div className={`${s.cards_container} ${classes}`}>
         {Cards}
       </div>
 

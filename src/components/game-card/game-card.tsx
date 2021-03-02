@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
-import { CARD_FACE_DELAY } from '../../utils/constants';
-
 import s from './game-card.module.scss';
 
 export interface GameCardProps {
   id: number;
   face: string;
+  delay: number;
   isFlipped: boolean;
   isInactive: boolean;
   onClick: undefined | (() => void);
 }
 
-const GameCard: React.FC<GameCardProps> = ({ face, isFlipped, isInactive, onClick }) => {
+const GameCard: React.FC<GameCardProps> = ({ face, isFlipped, isInactive, delay, onClick }) => {
   const [containerClasses, setContainerClasses] = useState(s.container);
   const [cardClasses, setCardClasses] = useState(`${s.card} ${s.card__isFlipped}`);
 
@@ -31,7 +30,7 @@ const GameCard: React.FC<GameCardProps> = ({ face, isFlipped, isInactive, onClic
     if (!isFlipped && cardClasses === `${s.card} ${s.card__isFlipped}` && !isInactive) {
       timer = window.setTimeout(() => {
         setCardClasses(s.card);
-      }, CARD_FACE_DELAY);
+      }, delay);
     }
 
     if (isFlipped) {
@@ -39,12 +38,12 @@ const GameCard: React.FC<GameCardProps> = ({ face, isFlipped, isInactive, onClic
     }
 
     return () => {timer && clearInterval(timer)};
-  }, [isFlipped, isInactive, cardClasses]);
+  }, [isFlipped, isInactive, cardClasses, delay]);
 
   return (
-    <div className={containerClasses}>
+    <div className={containerClasses} data-role='card'>
       <div className={cardClasses}>
-        <div className={s.card_face} onClick={onClick}>FrontSide</div>
+        <div className={s.card_face} onClick={onClick} />
         <div className={`${s.card_face} ${s.card_face__back}`}>{face}</div>
       </div>
     </div>

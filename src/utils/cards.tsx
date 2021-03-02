@@ -1,0 +1,43 @@
+interface ICards {
+  id: number;
+  face: string;
+};
+
+export const cards: ICards[] = [
+  { id: 1, face: 'a' },
+  { id: 2, face: 'a' },
+  { id: 3, face: 'b' },
+  { id: 4, face: 'b' },
+  { id: 5, face: 'c' },
+  { id: 6, face: 'c' },
+  { id: 7, face: 'd' },
+  { id: 8, face: 'd' },
+  { id: 9, face: 'e' },
+  { id: 10, face: 'e' },
+  { id: 11, face: 'f' },
+  { id: 12, face: 'f' },
+  { id: 13, face: 'g' },
+  { id: 14, face: 'g' },
+  { id: 15, face: 'h' },
+  { id: 16, face: 'h' },
+  { id: 17, face: 'i' },
+  { id: 18, face: 'i' },
+  { id: 19, face: 'j' },
+  { id: 20, face: 'j' },
+  { id: 21, face: 'k' },
+  { id: 22, face: 'k' },
+  { id: 23, face: 'l' },
+  { id: 24, face: 'l' },
+  { id: 25, face: 'm' },
+  { id: 26, face: 'm' },
+  { id: 27, face: 'n' },
+  { id: 28, face: 'n' },
+  { id: 29, face: 'o' },
+  { id: 30, face: 'o' },
+  { id: 31, face: 'p' },
+  { id: 32, face: 'p' },
+  { id: 33, face: 'q' },
+  { id: 34, face: 'q' },
+  { id: 35, face: 'r' },
+  { id: 36, face: 'r' },
+];

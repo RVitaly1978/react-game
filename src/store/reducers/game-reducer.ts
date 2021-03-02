@@ -3,32 +3,25 @@ import {
   GameAction,
   GameActionTypes } from '../../types/game';
 import shuffleArray from '../../utils/shuffle-array';
+import { cards } from '../../utils/cards';
+import { fields, FIELD_SMALL, FIELD_BIG, SPEED_FAST } from '../../utils/constants';
 
-export const cards = [
-  { id: 1, face: 'a' },
-  { id: 2, face: 'a' },
-  { id: 3, face: 'b' },
-  { id: 4, face: 'b' },
-  { id: 5, face: 'c' },
-  { id: 6, face: 'c' },
-  { id: 7, face: 'd' },
-  { id: 8, face: 'd' },
-  { id: 9, face: 'e' },
-  { id: 10, face: 'e' },
-];
+const cardsSmall = cards.slice(0, fields[FIELD_SMALL]);
+const cardsBig = cards.slice(0, fields[FIELD_BIG]);
 
-const shuffled = shuffleArray(cards);
 const initialState: IGameState = {
   isInitialLoading: true,
-  cards: shuffled,
   isPauseGame: false,
   isGameInProgress: true,
   isEndGame: false,
-  flipped: [...shuffled.map(({ id }) => id)],
   pair: [],
   inactive: [],
   moveCount: 0,
   timeCount: 0,
+  field: FIELD_BIG,
+  speed: SPEED_FAST,
+  cards: shuffleArray(cardsBig),
+  flipped: shuffleArray(cardsBig).map(({ id }) => id),
 };
 
 const gameReducer = (state = initialState, action: GameAction): IGameState => {
@@ -40,7 +33,10 @@ const gameReducer = (state = initialState, action: GameAction): IGameState => {
       return {
         ...initialState,
         isInitialLoading: state.isInitialLoading,
-        cards: shuffleArray(cards),
+        cards: state.field === FIELD_BIG ? shuffleArray(cardsBig) : shuffleArray(cardsSmall),
+        flipped: state.field === FIELD_BIG
+          ? shuffleArray(cardsBig).map(({ id }) => id)
+          : shuffleArray(cardsSmall).map(({ id }) => id),
       };
 
     case GameActionTypes.SET_SAVED_GAME:
@@ -65,6 +61,9 @@ const gameReducer = (state = initialState, action: GameAction): IGameState => {
       return { ...state, ...action.payload };
 
     case GameActionTypes.SET_GAME_FLIPPED:
+      return { ...state, ...action.payload };
+
+    case GameActionTypes.SET_GAME_OPTIONS:
       return { ...state, ...action.payload };
 
     case GameActionTypes.SET_GAME_INACTIVE:

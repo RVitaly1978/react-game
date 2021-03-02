@@ -2,7 +2,7 @@ import { ThunkDispatch } from 'redux-thunk';
 
 import { login, registration } from '../../api';
 import { setAllUserSettings } from './settings';
-import { setNewGame, setIsPauseGame, setIsGameInProgress } from './game';
+import { setNewGame, setIsGameInProgress } from './game';
 import {
   AuthActionTypes,
   ISetUserAuth,

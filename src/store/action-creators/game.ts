@@ -1,7 +1,9 @@
+import { ThunkDispatch } from 'redux-thunk';
 import { Dispatch } from 'react';
 
 import { RootState } from './../reducers/index';
 import {
+  GameAction,
   GameActionTypes,
   ISetGameFlipped,
   ISetGameInactive,
@@ -12,7 +14,9 @@ import {
   ISetIsEndGame,
   ISetIsPauseGame,
   ISetIsGameInProgress,
-  ISetNewGame} from '../../types/game';
+  ISetNewGame,
+  ISetGameOptions,
+  IGameState} from '../../types/game';
 import { saveToLocalStorage } from '../../utils/save-to-localStorage';
 
 export const setInitialLoadingEnd = (): ISetInitialLoadingEnd => ({
@@ -70,6 +74,19 @@ export const setGameInactive = (inactive: number[]): ISetGameInactive => ({
   type: GameActionTypes.SET_GAME_INACTIVE,
   payload: { inactive },
 });
+
+export const setGameOptions = (field: string, speed: string): ISetGameOptions => ({
+  type: GameActionTypes.SET_GAME_OPTIONS,
+  payload: { field, speed },
+});
+
+export const gameOptions = (field: string, speed: string) => {
+  return async (dispatch: ThunkDispatch<IGameState, void, GameAction>) => {
+    dispatch(setGameOptions(field, speed));
+    dispatch(setNewGame());
+    dispatch(setIsGameInProgress(false));
+  };
+};
 
 export const updateTimeCount = () => {
   return (dispatch: Dispatch<any>, getState: () => RootState ) => {

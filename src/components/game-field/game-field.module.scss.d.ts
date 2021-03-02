@@ -1,5 +1,7 @@
 export const container: string;
 export const cards_container: string;
+export const small: string;
+export const big: string;
 export const data_field: string;
 export const counts_container: string;
 export const wrapper_button: string;
