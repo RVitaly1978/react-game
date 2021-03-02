@@ -6,6 +6,7 @@ import {
   userLogout,
   userRegistration,
   userLogin,
+  setUserAuthError,
 } from './auth';
 
 import {
@@ -37,6 +38,7 @@ export {
   userLogout,
   userRegistration,
   userLogin,
+  setUserAuthError,
 
   fetchUserStatistics,
   fetchUsersHighScores,

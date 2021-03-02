@@ -6,8 +6,9 @@ import {
 
 import GamePage from '../../pages/game-page';
 import GameSettingsPage from '../../pages/game-settings-page';
-import LoginPage from '../../pages/login-page';
-import RegistrationPage from '../../pages/registration-page';
+// import LoginPage from '../../pages/login-page';
+import AuthPage from '../../pages/auth-page';
+// import RegistrationPage from '../../pages/registration-page';
 import StatisticsPage from '../../pages/statistics-page';
 
 interface IRoute {
@@ -22,6 +23,8 @@ export const authRoutes: IRoute[] = [
 ];
 
 export const publicRoutes: IRoute[] = [
-  { path: LOGIN_ROUTE, Component: LoginPage },
-  { path: REGISTRATION_ROUTE, Component: RegistrationPage },
+  { path: LOGIN_ROUTE, Component: AuthPage },
+  { path: REGISTRATION_ROUTE, Component: AuthPage },
+  // { path: LOGIN_ROUTE, Component: LoginPage },
+  // { path: REGISTRATION_ROUTE, Component: RegistrationPage },
 ];

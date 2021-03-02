@@ -124,6 +124,27 @@ button, a {
   user-select: none;
 }
 
+input {
+  margin: 0;
+  padding: 0;
+
+  border: none;
+
+  background-color: inherit;
+
+  font: inherit;
+  color: inherit;
+}
+
 table {
   border-spacing: 0;
+}
+
+:fullscreen::backdrop {
+  margin: 0.1rem !important;
+  padding: 0.5rem;
+
+  background-color: $color-background;
+  border: $border;
+  border-radius: $radius-border-view;
 }

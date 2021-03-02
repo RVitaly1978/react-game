@@ -34,9 +34,15 @@ const App: React.FC = () => {
     <Router>
       <div className={s.app}>
         <div className={s.app_content}>
+
           <Header />
-          <AppRouter />
+
+          <section className={s.app_main}>
+            <AppRouter />
+          </section>
+
           <Footer />
+
         </div>
       </div>
     </Router>

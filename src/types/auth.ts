@@ -1,18 +1,16 @@
 export enum AuthActionTypes {
   SET_USER_AUTH = 'SET_USER_AUTH',
   SET_USER_AUTH_ERROR = 'SET_USER_AUTH_ERROR',
+  SET_USER_AUTH_FETCH = 'SET_USER_AUTH_FETCH',
   SET_USER_LOGOUT = 'SET_USER_LOGOUT',
-};
-
-export interface IPayloadUserAuth {
-  userId?: null | string;
-  userEmail?: null | string;
-  userAuthError?: null | string;
 };
 
 export interface ISetUserAuth {
   type: AuthActionTypes.SET_USER_AUTH;
-  payload: IPayloadUserAuth;
+  payload: {
+    userId: null | string;
+    userEmail: null | string;
+  };
 };
 
 export interface ISetUserLogout {
@@ -21,14 +19,25 @@ export interface ISetUserLogout {
 
 export interface ISetUserAuthError {
   type: AuthActionTypes.SET_USER_AUTH_ERROR;
-  payload: IPayloadUserAuth;
+  payload: {
+    userAuthError: null | string;
+  };
 };
 
-export type AuthAction = ISetUserAuth | ISetUserLogout | ISetUserAuthError;
+export interface ISetUserAuthFetch {
+  type: AuthActionTypes.SET_USER_AUTH_FETCH;
+  payload: {
+    isLoading: boolean;
+  };
+};
+
+export type AuthAction = ISetUserAuth
+  | ISetUserLogout | ISetUserAuthError | ISetUserAuthFetch;
 
 export interface IAuthState {
   userId: null | string;
   userEmail: null | string;
   userAuthError: null | string;
+  isLoading: boolean;
   isAuth: boolean;
 };

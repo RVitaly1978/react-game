@@ -9,7 +9,8 @@ import {
   ISetUserAuthError,
   ISetUserLogout,
   AuthAction,
-  IAuthState } from '../../types/auth';
+  IAuthState, 
+  ISetUserAuthFetch} from '../../types/auth';
 import { GameAction } from '../../types/game';
 import { GameSettingsAction } from './../../types/game-settings';
 import { RootState } from '../reducers';
@@ -19,11 +20,17 @@ export const setUserAuth = (id: string, email: string): ISetUserAuth => ({
   payload: {
     userId: id,
     userEmail: email,
-    userAuthError: null,
   },
 });
 
-export const setUserAuthError = (error: string): ISetUserAuthError => ({
+export const setUserAuthFetch = (): ISetUserAuthFetch => ({
+  type: AuthActionTypes.SET_USER_AUTH_FETCH,
+  payload: {
+    isLoading: true,
+  },
+});
+
+export const setUserAuthError = (error: string | null): ISetUserAuthError => ({
   type: AuthActionTypes.SET_USER_AUTH_ERROR,
   payload: {
     userAuthError: error,
@@ -46,6 +53,7 @@ export const userLogout = () => {
 export const userLogin = (email: string, password: string) => {
   return async (dispatch: ThunkDispatch<IAuthState, void, AuthAction | GameSettingsAction>) => {
     try {
+      dispatch(setUserAuthFetch());
       const { id, settings } = await login(email, password);
       dispatch(setUserAuth(id, email));
       dispatch(setAllUserSettings(settings));
@@ -60,6 +68,7 @@ export const userRegistration = (email: string, password: string) => {
   return async (dispatch: ThunkDispatch<IAuthState, void, AuthAction>, getState: () => RootState) => {
     const { gameSettings } = getState();
     try {
+      dispatch(setUserAuthFetch());
       const { id } = await registration(email, password, gameSettings);
       dispatch(setUserAuth(id, email));
     } catch (e) {

@@ -1,25 +1,10 @@
 @import '../../styles/abstract/abstracts';
 
-$main-height: calc(100vh - #{$header-hight} - #{$footer-hight} - 4 * 0.5rem);
-$main-height-surface: calc(100vh - #{$header-hight-surface} - #{$footer-hight} - 2 * 0.5rem);
-
 .container {
   position: relative;
 
   width: 100%;
-  height: $main-height;
-  margin-top: 0.5rem;
+  height: 100%;
 
   @include flex($flex-direction: column);
-
-  @include media-surface {
-    height: $main-height-surface;
-    padding-left: $padding-surface;
-    padding-right: $padding-surface;
-  }
-
-  @include media-mobile {
-    padding-left: $padding-mobile;
-    padding-right: $padding-mobile;
-  }
 }
