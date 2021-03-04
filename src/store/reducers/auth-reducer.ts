@@ -3,7 +3,7 @@ import {
   AuthAction,
   AuthActionTypes } from '../../types/auth';
 
-const initialState: IAuthState = {
+const initialAuthState: IAuthState = {
   userId: null,
   userEmail: null,
   userAuthError: null,
@@ -11,16 +11,16 @@ const initialState: IAuthState = {
   isAuth: false,
 };
 
-export const authReducer = (state = initialState, action: AuthAction): IAuthState => {
+export const authReducer = (state = initialAuthState, action: AuthAction): IAuthState => {
   switch (action.type) {
     case AuthActionTypes.SET_USER_AUTH:
       return { ...state, ...action.payload, isAuth: true, isLoading: false, };
 
     case AuthActionTypes.SET_USER_LOGOUT:
-      return { ...initialState };
+      return { ...initialAuthState };
 
     case AuthActionTypes.SET_USER_AUTH_ERROR:
-      return { ...initialState, ...action.payload };
+      return { ...initialAuthState, ...action.payload, isLoading: false };
 
     case AuthActionTypes.SET_USER_AUTH_FETCH:
       return { ...state, ...action.payload };

@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
 const BASE_URL: string | undefined = process.env.REACT_APP_API_BASE_URL;
 
 const config: AxiosRequestConfig = {
-  baseURL: BASE_URL
+  baseURL: BASE_URL,
 };
 
 const $host: AxiosInstance = axios.create(config);

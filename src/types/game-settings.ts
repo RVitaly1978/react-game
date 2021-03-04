@@ -22,6 +22,9 @@ export interface ISetAllGameSettings {
 export type GameSettingsAction = ISetGameMusicVolume | ISetGameEffectsVolume | ISetAllGameSettings;
 
 export interface IGameSettingsState {
+  userNick: string;
   musicVolume: number;
   effectsVolume: number;
+  theme: string;
+  lang: string;
 };

@@ -1,107 +1,87 @@
-import { ThunkDispatch } from 'redux-thunk';
 import { Dispatch } from 'react';
 
+import { initialGameState } from './../reducers/game-reducer';
+import { GameAction, GameActionTypes, IGameState} from '../../types/game';
 import { RootState } from './../reducers/index';
-import {
-  GameAction,
-  GameActionTypes,
-  ISetGameFlipped,
-  ISetGameInactive,
-  ISetGameMoveCount,
-  ISetGamePair,
-  ISetGameTimeCount,
-  ISetInitialLoadingEnd, 
-  ISetIsEndGame,
-  ISetIsPauseGame,
-  ISetIsGameInProgress,
-  ISetNewGame,
-  ISetGameOptions,
-  IGameState} from '../../types/game';
 import { saveToLocalStorage } from '../../utils/save-to-localStorage';
+import { getCards } from './../../utils/get-cards';
 
-export const setInitialLoadingEnd = (): ISetInitialLoadingEnd => ({
-  type: GameActionTypes.SET_INITIAL_LOADING_END,
-});
-
-export const setNewGame = (): ISetNewGame => ({
+export const setNewGame = (game: IGameState): GameAction => ({
   type: GameActionTypes.SET_NEW_GAME,
+  payload: { game },
 });
 
-export const setIsEndGame = (): ISetIsEndGame => ({
+export const setIsEndGame = (): GameAction => ({
   type: GameActionTypes.SET_IS_END_GAME,
 });
 
-export const setIsPauseGame = (isPauseGame: boolean): ISetIsPauseGame => ({
+export const setIsPauseGame = (isPauseGame: boolean): GameAction => ({
   type: GameActionTypes.SET_IS_PAUSE_GAME,
   payload: { isPauseGame },
 });
 
-export const pauseGame = (isPauseGame: boolean) => {
-  return (dispatch: Dispatch<any>, getState: () => RootState ) => {
-    const { game, gameSettings } = getState();
-
-    dispatch(setIsPauseGame(isPauseGame));
-
-    game.isPauseGame = isPauseGame;
-    saveToLocalStorage(game, gameSettings);
-  };
-};
-
-export const setIsGameInProgress = (isGameInProgress: boolean): ISetIsGameInProgress => ({
+export const setIsGameInProgress = (isGameInProgress: boolean): GameAction => ({
   type: GameActionTypes.SET_IS_GAME_IN_PROGRESS,
   payload: { isGameInProgress },
 });
 
-export const setTimeCount = (): ISetGameTimeCount => ({
+export const setTimeCount = (): GameAction => ({
   type: GameActionTypes.SET_GAME_TIME_COUNT,
 });
 
-export const setMoveCount = (): ISetGameMoveCount => ({
+export const setMoveCount = (): GameAction => ({
   type: GameActionTypes.SET_GAME_MOVE_COUNT,
 });
 
-export const setGamePair = (pair: number[]): ISetGamePair => ({
+export const setGamePair = (pair: number[]): GameAction => ({
   type: GameActionTypes.SET_GAME_PAIR,
   payload: { pair },
 });
 
-export const setGameFlipped = (flipped: number[]): ISetGameFlipped => ({
+export const setGameFlipped = (flipped: number[]): GameAction => ({
   type: GameActionTypes.SET_GAME_FLIPPED,
   payload: { flipped },
 });
 
-export const setGameInactive = (inactive: number[]): ISetGameInactive => ({
+export const setGameInactive = (inactive: number[]): GameAction => ({
   type: GameActionTypes.SET_GAME_INACTIVE,
   payload: { inactive },
 });
 
-export const setGameOptions = (field: string, speed: string): ISetGameOptions => ({
-  type: GameActionTypes.SET_GAME_OPTIONS,
-  payload: { field, speed },
-});
 
-export const gameOptions = (field: string, speed: string) => {
-  return async (dispatch: ThunkDispatch<IGameState, void, GameAction>) => {
-    dispatch(setGameOptions(field, speed));
-    dispatch(setNewGame());
-    dispatch(setIsGameInProgress(false));
+export const pauseGame = (isPauseGame: boolean) => {
+  return (dispatch: Dispatch<GameAction>, getState: () => RootState ) => {
+    const { game, settings, options } = getState();
+
+    dispatch(setIsPauseGame(isPauseGame));
+
+    game.isPauseGame = isPauseGame;
+    saveToLocalStorage(game, settings, options);
+  };
+};
+
+export const newGame = () => {
+  return (dispatch: Dispatch<GameAction>, getState: () => RootState ) => {
+    const { options } = getState();
+    const cards = getCards(options);
+    dispatch(setNewGame({ ...initialGameState, cards }));
   };
 };
 
 export const updateTimeCount = () => {
-  return (dispatch: Dispatch<any>, getState: () => RootState ) => {
-    const { game, gameSettings } = getState();
+  return (dispatch: Dispatch<GameAction>, getState: () => RootState ) => {
+    const { game, settings, options } = getState();
 
     dispatch(setTimeCount());
 
     game.timeCount = game.timeCount + 1;
-    saveToLocalStorage(game, gameSettings);
+    saveToLocalStorage(game, settings, options);
   };
 };
 
 export const setGameTic = (id: number) => {
-  return (dispatch: Dispatch<any>, getState: () => RootState ) => {
-    const { game, gameSettings } = getState();
+  return (dispatch: Dispatch<GameAction>, getState: () => RootState ) => {
+    const { game, settings, options } = getState();
     const { cards, pair, flipped, inactive, isEndGame } = game;
     const active = [...pair, id];
 
@@ -124,6 +104,6 @@ export const setGameTic = (id: number) => {
       dispatch(setGamePair([...active]));
     }
 
-    saveToLocalStorage(game, gameSettings);
+    saveToLocalStorage(game, settings, options);
   };
 };

@@ -1,11 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import s from './game-settings-page.module.scss';
 
 const GameSettingsPage: React.FC = () => {
-  const state = useSelector(state => state);
-  console.log(state);
+  // const state = useTypedSelector(state => state);
 
   return (
     <div className={s.container}>

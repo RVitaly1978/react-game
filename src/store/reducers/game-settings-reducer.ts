@@ -3,12 +3,15 @@ import {
   GameSettingsAction,
   GameSettingsActionTypes } from '../../types/game-settings';
 
-const initialState: IGameSettingsState = {
+export const initialSettingsState: IGameSettingsState = {
+  userNick: 'user',
   musicVolume: 5,
   effectsVolume: 5,
+  theme: 'light',
+  lang: 'en',
 };
 
-const gameSettingsReducer = (state = initialState, action: GameSettingsAction): IGameSettingsState => {
+export const gameSettingsReducer = (state = initialSettingsState, action: GameSettingsAction): IGameSettingsState => {
   switch (action.type) {
     case GameSettingsActionTypes.SET_GAME_MUSIC_VOLUME:
       return { ...state, musicVolume: action.payload };
@@ -23,5 +26,3 @@ const gameSettingsReducer = (state = initialState, action: GameSettingsAction): 
       return state;
   }
 };
-
-export default gameSettingsReducer;

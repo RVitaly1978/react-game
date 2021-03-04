@@ -40,7 +40,7 @@ $cs-min: (
 );
 
 .cards_container {
-  padding-top: 3.5rem;
+  padding: 3.5rem 0.5rem 0.5rem;
   display: grid;
   grid-gap: 0.5rem;
 
@@ -104,6 +104,20 @@ $cs-min: (
     }
   }
 
+  @include media-tabletHight {
+    overflow-y: scroll;
+
+    &.small {
+      grid-template-columns: repeat(6, min-content);
+      grid-template-rows: repeat(3, min-content);
+    }
+
+    &.big {
+      grid-template-columns: repeat(8, min-content);
+      grid-template-rows: repeat(5, min-content);
+    }
+  }
+
 }
 
 .data_field {
@@ -126,6 +140,7 @@ $cs-min: (
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 5;
 
   padding: 0.5rem;
   @include flex();
@@ -140,6 +155,7 @@ $cs-min: (
 
   top: 0;
   right: 3rem;
+  z-index: 5;
 
   @include size(3rem);
 
@@ -181,7 +197,7 @@ $cs-min: (
   bottom: 0;
 
   z-index: 10;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: inherit;
 
   pointer-events: none;
@@ -192,6 +208,8 @@ $cs-min: (
 
   min-width: 27rem;
   max-width: 50rem;
+  max-height: 100%;
+  padding: 0.5rem;
 
   @include flex($flex-direction: column);
 
@@ -202,6 +220,10 @@ $cs-min: (
   button + button {
     margin-top: 2rem;
   }
+
+  @include media-tabletHight {
+    overflow-y: scroll;
+  }
 }
 
 .container_congratulations {
@@ -211,6 +233,9 @@ $cs-min: (
 
   border: $border;
   border-radius: $radius-border-view;
+  background-color: $color-background-view;
+
+  user-select: none;
 
   @include flex($flex-direction: column);
 }

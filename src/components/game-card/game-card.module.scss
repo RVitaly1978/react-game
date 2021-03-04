@@ -36,7 +36,7 @@
   @extend %transition-hover;
   @include media-hover {
     &:hover {
-      box-shadow: 0 0 3px 2px $color-hover;
+      box-shadow: 0 0 3px 2px #465298;
     }
   }
 }
@@ -48,23 +48,26 @@
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  @include flex();
 
   border-radius: inherit;
   box-shadow: 0 0 4px 2px $color-shadow, 0 0 6px 3px $color-shadow-light;
 
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
-  background-color: brown;
+  background: repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px);
 
   &__back {
+    font-size: 5em;
+
     transform: rotateY(180deg);
 
-    background-color: chocolate;
+    background: radial-gradient(white, #FFA9A1);
+
+    @include media-landscape {
+      font-size: 4em;
+    }
+
+    @include media-surface {
+      font-size: 3em;
+    }
   }
 }

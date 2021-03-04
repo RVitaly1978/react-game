@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import {
-  userLogin, userRegistration, setUserAuthError,
-} from '../../store/action-creators';
+import { userLogin, userRegistration, setUserAuthError } from '../../store/action-creators/auth';
 import { GAME_ROUTE } from '../../utils/constants';
 import { useTypedSelector } from '../hooks';
 
@@ -19,10 +17,11 @@ interface IAuthFormProps {
 };
 
 const AuthForm: React.FC<IAuthFormProps> = ({ isLogin }) => {
-  const userAuthError = useTypedSelector(s => s.auth.userAuthError);
-  const userAuthFetch = useTypedSelector(s => s.auth.isLoading);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const userAuthError = useTypedSelector(s => s.auth.userAuthError);
+  const userAuthFetch = useTypedSelector(s => s.auth.isLoading);
 
   const [state, setState] = useState({ email: '', password: '' });
 
@@ -30,7 +29,7 @@ const AuthForm: React.FC<IAuthFormProps> = ({ isLogin }) => {
     if (userAuthError && (!state.email || !state.password)) {
       dispatch(setUserAuthError(null));
     }
-  }, [userAuthError, state.email, !state.password]);
+  }, [userAuthError, state.email, state.password]);
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { value, id } = evt.target;
@@ -50,9 +49,7 @@ const AuthForm: React.FC<IAuthFormProps> = ({ isLogin }) => {
           ? await dispatch(userLogin(state.email, state.password))
           : await dispatch(userRegistration(state.email, state.password));
         history.push(GAME_ROUTE);
-      } catch (e) {
-        return;
-      }
+      } catch (e) {}
     }
   };
 

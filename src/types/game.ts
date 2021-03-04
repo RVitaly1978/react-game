@@ -1,7 +1,5 @@
 export enum GameActionTypes {
-  SET_INITIAL_LOADING_END = 'SET_INITIAL_LOADING_END',
   SET_NEW_GAME = 'SET_NEW_GAME',
-  SET_SAVED_GAME = 'SET_SAVED_GAME',
   SET_IS_END_GAME = 'SET_IS_END_GAME',
   SET_IS_PAUSE_GAME = 'SET_IS_PAUSE_GAME',
   SET_GAME_TIME_COUNT = 'SET_GAME_TIME_COUNT',
@@ -10,29 +8,12 @@ export enum GameActionTypes {
   SET_GAME_FLIPPED = 'SET_GAME_FLIPPED',
   SET_GAME_INACTIVE = 'SET_GAME_INACTIVE',
   SET_IS_GAME_IN_PROGRESS = 'SET_IS_GAME_IN_PROGRESS',
-  SET_GAME_OPTIONS = 'SET_GAME_OPTIONS',
-};
-
-export interface ISetInitialLoadingEnd {
-  type: GameActionTypes.SET_INITIAL_LOADING_END;
 };
 
 export interface ISetNewGame {
   type: GameActionTypes.SET_NEW_GAME;
-};
-
-export interface ISetSavedGame {
-  type: GameActionTypes.SET_SAVED_GAME;
   payload: {
     game: IGameState;
-  };
-};
-
-export interface ISetGameOptions {
-  type: GameActionTypes.SET_GAME_OPTIONS;
-  payload: {
-    field: string;
-    speed: string;
   };
 };
 
@@ -83,10 +64,9 @@ export interface ISetGameInactive {
   };
 };
 
-export type GameAction = ISetInitialLoadingEnd
-  | ISetIsEndGame | ISetGamePair | ISetIsPauseGame | ISetNewGame | ISetSavedGame
+export type GameAction = ISetIsEndGame | ISetIsPauseGame | ISetNewGame
   | ISetGameTimeCount | ISetGameMoveCount | ISetGameInactive | ISetGameFlipped
-  | ISetIsGameInProgress | ISetGameOptions;
+  | ISetIsGameInProgress | ISetGamePair;
 
 export interface IGameCard {
   id: number;
@@ -94,16 +74,13 @@ export interface IGameCard {
 };
 
 export interface IGameState {
-  isInitialLoading: boolean;
-  cards: IGameCard[],
   isPauseGame: boolean;
   isGameInProgress: boolean;
   isEndGame: boolean;
+  cards: IGameCard[],
   flipped: number[];
   pair: number[];
   inactive: number[];
   moveCount: number;
   timeCount: number;
-  field: string;
-  speed: string;
 };

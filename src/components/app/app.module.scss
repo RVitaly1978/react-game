@@ -63,12 +63,5 @@ $main-height-surface: calc(100vh - #{$header-hight-surface} - #{$footer-hight} -
 
   @include media-surface {
     height: $main-height-surface;
-    padding-left: $padding-surface;
-    padding-right: $padding-surface;
-  }
-
-  @include media-mobile {
-    padding-left: $padding-mobile;
-    padding-right: $padding-mobile;
   }
 }

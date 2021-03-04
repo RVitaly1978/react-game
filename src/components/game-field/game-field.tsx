@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
-  setNewGame, pauseGame,
-  updateTimeCount, setGameTic, setGameFlipped } from '../../store/action-creators';
+  newGame, pauseGame, updateTimeCount,
+  setGameTic, setGameFlipped, setIsGameInProgress } from '../../store/action-creators/game';
 import { useTypedSelector } from '../hooks';
 import { delays, FIELD_BIG } from '../../utils/constants';
 
@@ -19,10 +19,10 @@ import s from './game-field.module.scss';
 
 const GameField: React.FC = () => {
   const dispatch = useDispatch();
-  const {
-    cards, flipped, inactive, moveCount, timeCount,
-    isEndGame, isPauseGame, isGameInProgress, speed, field,
-  } = useTypedSelector(s => s.game);
+
+  const { timeCount, moveCount, cards, flipped, inactive,
+    isGameInProgress, isPauseGame, isEndGame } = useTypedSelector(s => s.game);
+  const { speed, field } = useTypedSelector(s => s.options);
 
   const delay: number = delays[speed];
 
@@ -31,12 +31,10 @@ const GameField: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const timer: number = window.setInterval(() => {
+    if (!isEndGame && isGameInProgress && !isPauseGame && timeCount === 0) {
       dispatch(setGameFlipped([]));
-    }, delay);
-
-    return () => {clearInterval(timer)};
-  }, [dispatch, delay]);
+    }
+  }, [dispatch, isEndGame, isGameInProgress, isPauseGame, timeCount]);
 
   useEffect(() => {
     let timer: number | null = null;
@@ -49,13 +47,14 @@ const GameField: React.FC = () => {
   }, [isEndGame, isPauseGame, dispatch]);
 
   const handleCardClick = (id: number) => {
-    console.log(id);
     dispatch(setGameFlipped([...flipped, id]));
     dispatch(setGameTic(id));
   };
 
   const handleNewGameClick = () => {
-    dispatch(setNewGame());
+    dispatch(newGame());
+    dispatch(setIsGameInProgress(true));
+    dispatch(setGameFlipped(cards.map(({ id }) => id)));
   };
 
   const handleContinueGameClick = () => {

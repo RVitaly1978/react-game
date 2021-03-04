@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 
 import { useTypedSelector } from '../hooks';
-import { userLogout } from '../../store/action-creators';
+import { userLogout } from '../../store/action-creators/auth';
 
 import {
   LOGIN_ROUTE, GAME_ROUTE, SETTINGS_ROUTE, STATISTICS_ROUTE,

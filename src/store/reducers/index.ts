@@ -1,13 +1,17 @@
 import { combineReducers } from 'redux';
 
-import gameSettingsReducer from './game-settings-reducer';
-import gameReducer from './game-reducer';
+import { gameSettingsReducer } from './game-settings-reducer';
+import { gameOptionsReducer } from './game-options-reducer';
+import { gameReducer } from './game-reducer';
 import { statisticsReducer } from './statistics-reducer';
 import { authReducer } from './auth-reducer';
+import { initReducer } from './init-reducer';
 
 export const rootReducer = combineReducers({
+  init: initReducer,
   auth: authReducer,
-  gameSettings: gameSettingsReducer,
+  settings: gameSettingsReducer,
+  options: gameOptionsReducer,
   game: gameReducer,
   statistics: statisticsReducer,
 });

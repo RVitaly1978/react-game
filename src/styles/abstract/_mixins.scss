@@ -45,11 +45,9 @@
   @media (max-width: $content-width-min) { @content; }
 }
 
-
 @mixin media-tabletHight {
-  @media (min-height: $content-hight-tabletHight) { @content; }
+  @media (orientation: landscape) and (max-height: $content-hight-tabletHight) { @content; }
 }
-
 
 @mixin media-hover {
   @media (pointer: fine) { @content; }

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useTypedSelector } from '../../components/hooks';
-import { fetchUsersHighScores, fetchUserStatistics } from '../../store/action-creators';
+import { fetchUsersHighScores, fetchUserStatistics } from '../../store/action-creators/statistics';
 
 import s from './statistics-page.module.scss';
 

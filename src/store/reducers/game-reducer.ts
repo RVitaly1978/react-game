@@ -1,46 +1,22 @@
-import {
-  IGameState,
-  GameAction,
-  GameActionTypes } from '../../types/game';
-import shuffleArray from '../../utils/shuffle-array';
-import { cards } from '../../utils/cards';
-import { fields, FIELD_SMALL, FIELD_BIG, SPEED_FAST } from '../../utils/constants';
+import { IGameState, GameAction, GameActionTypes } from '../../types/game';
 
-const cardsSmall = cards.slice(0, fields[FIELD_SMALL]);
-const cardsBig = cards.slice(0, fields[FIELD_BIG]);
-
-const initialState: IGameState = {
-  isInitialLoading: true,
+export const initialGameState: IGameState = {
   isPauseGame: false,
-  isGameInProgress: true,
+  isGameInProgress: false,
   isEndGame: false,
-  pair: [],
-  inactive: [],
   moveCount: 0,
   timeCount: 0,
-  field: FIELD_BIG,
-  speed: SPEED_FAST,
-  cards: shuffleArray(cardsBig),
-  flipped: shuffleArray(cardsBig).map(({ id }) => id),
+  pair: [],
+  inactive: [],
+  cards: [],
+  flipped: [],
 };
 
-const gameReducer = (state = initialState, action: GameAction): IGameState => {
+export const gameReducer = (state = initialGameState, action: GameAction): IGameState => {
   switch (action.type) {
-    case GameActionTypes.SET_INITIAL_LOADING_END:
-      return { ...state, isInitialLoading: false };
 
     case GameActionTypes.SET_NEW_GAME:
-      return {
-        ...initialState,
-        isInitialLoading: state.isInitialLoading,
-        cards: state.field === FIELD_BIG ? shuffleArray(cardsBig) : shuffleArray(cardsSmall),
-        flipped: state.field === FIELD_BIG
-          ? shuffleArray(cardsBig).map(({ id }) => id)
-          : shuffleArray(cardsSmall).map(({ id }) => id),
-      };
-
-    case GameActionTypes.SET_SAVED_GAME:
-      return action.payload.game;
+      return { ...action.payload.game };
 
     case GameActionTypes.SET_IS_END_GAME:
       return { ...state, isEndGame: true, isGameInProgress: false };
@@ -63,9 +39,6 @@ const gameReducer = (state = initialState, action: GameAction): IGameState => {
     case GameActionTypes.SET_GAME_FLIPPED:
       return { ...state, ...action.payload };
 
-    case GameActionTypes.SET_GAME_OPTIONS:
-      return { ...state, ...action.payload };
-
     case GameActionTypes.SET_GAME_INACTIVE:
       return { ...state, inactive: [...state.inactive, ...action.payload.inactive] };
 
@@ -73,5 +46,3 @@ const gameReducer = (state = initialState, action: GameAction): IGameState => {
       return state;
   }
 };
-
-export default gameReducer;
