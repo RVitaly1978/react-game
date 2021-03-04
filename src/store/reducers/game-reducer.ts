@@ -10,6 +10,8 @@ export const initialGameState: IGameState = {
   inactive: [],
   cards: [],
   flipped: [],
+  isLoading: false,
+  error: null,
 };
 
 export const gameReducer = (state = initialGameState, action: GameAction): IGameState => {
@@ -25,6 +27,12 @@ export const gameReducer = (state = initialGameState, action: GameAction): IGame
       return { ...state, ...action.payload };
 
     case GameActionTypes.SET_IS_GAME_IN_PROGRESS:
+      return { ...state, ...action.payload };
+
+    case GameActionTypes.SET_GAME_LOADING:
+      return { ...state, ...action.payload };
+
+    case GameActionTypes.SET_GAME_ERROR:
       return { ...state, ...action.payload };
 
     case GameActionTypes.SET_GAME_TIME_COUNT:

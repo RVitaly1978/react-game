@@ -12,3 +12,4 @@ export const modal_content: string;
 export const container_start_game: string;
 export const container_congratulations: string;
 export const container_congratulations_row: string;
+export const game_error: string;

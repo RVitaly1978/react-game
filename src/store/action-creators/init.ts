@@ -1,10 +1,10 @@
 import { ThunkDispatch } from 'redux-thunk';
 import { Dispatch } from 'react';
 
-import { check } from '../../api';
+import { check } from '../../api/auth-api';
 import { setAllUserSettings } from './settings';
 import { setAllGameOptions } from './options';
-import { setIsPauseGame, setNewGame } from './game';
+import { setNewGame } from './game';
 import { setUserAuth, setUserLogout } from './auth';
 import { AuthAction, IAuthState } from '../../types/auth';
 import { GameOptionsAction } from './../../types/game-options';

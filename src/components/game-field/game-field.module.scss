@@ -204,6 +204,8 @@ $cs-min: (
 }
 
 .modal_content {
+  position: relative;
+
   z-index: 20;
 
   min-width: 27rem;
@@ -248,4 +250,30 @@ $cs-min: (
   div + div {
     margin-left: 3rem;
   }
+}
+
+.game_error {
+  position: fixed;
+  bottom: calc(#{$footer-hight} + 1.5rem);
+
+  min-width: 27rem;
+  max-width: 50rem;
+  padding: 0.5rem;
+
+  background-color: $color-background-dialog;
+  color: $color-text-dialog;
+
+  box-shadow: $box-shadow-dialog;
+
+  border-radius: $radius-border-view;
+
+  font-size: inherit;
+
+  user-select: none;
+
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+  -moz-animation: fadeIn ease 1s;
+  -o-animation: fadeIn ease 1s;
+  -ms-animation: fadeIn ease 1s;
 }

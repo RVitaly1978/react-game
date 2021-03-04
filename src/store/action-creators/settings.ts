@@ -1,12 +1,12 @@
-import { Dispatch } from "react";
+import { Dispatch } from 'react';
 
-import { setSettings } from "../../api";
+import { setSettings } from '../../api/settings-api';
 import {
   GameSettingsActionTypes,
   GameSettingsAction,
   IGameSettingsState,
   ISetAllGameSettings,
-} from "../../types/game-settings";
+} from '../../types/game-settings';
 
 export const setAllUserSettings = (settings: IGameSettingsState): ISetAllGameSettings => ({
   type: GameSettingsActionTypes.SET_ALL_GAME_SETTINGS,
@@ -19,7 +19,7 @@ export const saveUserSettings = (settings: IGameSettingsState) => {
       await setSettings(settings);
       dispatch(setAllUserSettings(settings));
     } catch (e) {
-      // dispatch(setUserStatisticsError(e.response.data.message));
+      // dispatch(setUserStatisticsError(e.message));
     }
   }
 };

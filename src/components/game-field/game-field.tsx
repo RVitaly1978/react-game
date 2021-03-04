@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
-  newGame, pauseGame, updateTimeCount,
-  setGameTic, setGameFlipped, setIsGameInProgress } from '../../store/action-creators/game';
+  newGame, pauseGame, updateTimeCount, setGameTic,
+  setGameFlipped, setIsGameInProgress, saveResult } from '../../store/action-creators/game';
 import { useTypedSelector } from '../hooks';
 import { delays, FIELD_BIG } from '../../utils/constants';
 
@@ -20,7 +20,7 @@ import s from './game-field.module.scss';
 const GameField: React.FC = () => {
   const dispatch = useDispatch();
 
-  const { timeCount, moveCount, cards, flipped, inactive, pair,
+  const { timeCount, moveCount, cards, flipped, inactive,
     isGameInProgress, isPauseGame, isEndGame } = useTypedSelector(s => s.game);
   const { speed, field } = useTypedSelector(s => s.options);
 
@@ -29,6 +29,12 @@ const GameField: React.FC = () => {
   useEffect(() => {
     dispatch(pauseGame(true));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isEndGame) {
+      dispatch(saveResult());
+    }
+  }, [dispatch, isEndGame]);
 
   useEffect(() => {
     if (!isEndGame && isGameInProgress && !isPauseGame && timeCount === 0) {
@@ -91,11 +97,7 @@ const GameField: React.FC = () => {
         && <ModalWrapper>
           <ModalGameWindow
             onClickContinue={handleContinueGameClick}
-            onClickNew={handleNewGameClick}
-            isEndGame={isEndGame}
-            moveCount={moveCount}
-            timeCount={timeCount}
-            isDisabled={isEndGame || !isGameInProgress} />
+            onClickNew={handleNewGameClick} />
         </ModalWrapper>}
 
       <Button

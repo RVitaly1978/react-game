@@ -1,5 +1,7 @@
+import { ThunkDispatch } from 'redux-thunk';
 import { Dispatch } from 'react';
 
+import { saveResults } from './../../api/game-api';
 import { initialGameState } from './../reducers/game-reducer';
 import { GameAction, GameActionTypes, IGameState} from '../../types/game';
 import { RootState } from './../reducers/index';
@@ -23,6 +25,16 @@ export const setIsPauseGame = (isPauseGame: boolean): GameAction => ({
 export const setIsGameInProgress = (isGameInProgress: boolean): GameAction => ({
   type: GameActionTypes.SET_IS_GAME_IN_PROGRESS,
   payload: { isGameInProgress },
+});
+
+export const setGameLoading = (isLoading: boolean): GameAction => ({
+  type: GameActionTypes.SET_GAME_LOADING,
+  payload: { isLoading },
+});
+
+export const setGameError = (error: string | null): GameAction => ({
+  type: GameActionTypes.SET_GAME_ERROR,
+  payload: { error },
 });
 
 export const setTimeCount = (): GameAction => ({
@@ -105,5 +117,26 @@ export const setGameTic = (id: number) => {
     }
 
     saveToLocalStorage(game, settings, options);
+  };
+};
+
+export const saveResult = () => {
+  return async (dispatch: ThunkDispatch<RootState, void, GameAction>, getState: () => RootState ) => {
+    const { game, settings, options } = getState();
+    const result = {
+      time: game.timeCount,
+      moves: game.moveCount,
+      userNick: settings.userNick,
+      ...options,
+    };
+
+    try {
+      dispatch(setGameLoading(true));
+      await saveResults(result, settings, options);
+    } catch (e) {
+      dispatch(setGameError(e.message));
+    } finally {
+      dispatch(setGameLoading(false));
+    }
   };
 };
