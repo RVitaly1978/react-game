@@ -99,7 +99,7 @@ export const setGameTic = (id: number) => {
 
       dispatch(setMoveCount());
       dispatch(setGamePair([...active.slice(2)]));
-      dispatch(setGameFlipped([...flipped, active[0], active[1]]));
+      dispatch(setGameFlipped([...flipped.slice(2)]));
     } else {
       dispatch(setGamePair([...active]));
     }

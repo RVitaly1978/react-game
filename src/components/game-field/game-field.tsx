@@ -20,7 +20,7 @@ import s from './game-field.module.scss';
 const GameField: React.FC = () => {
   const dispatch = useDispatch();
 
-  const { timeCount, moveCount, cards, flipped, inactive,
+  const { timeCount, moveCount, cards, flipped, inactive, pair,
     isGameInProgress, isPauseGame, isEndGame } = useTypedSelector(s => s.game);
   const { speed, field } = useTypedSelector(s => s.options);
 
@@ -48,7 +48,10 @@ const GameField: React.FC = () => {
 
   const handleCardClick = (id: number) => {
     dispatch(setGameFlipped([...flipped, id]));
-    dispatch(setGameTic(id));
+
+    window.setTimeout(() => {
+      dispatch(setGameTic(id));
+    }, 0);
   };
 
   const handleNewGameClick = () => {
