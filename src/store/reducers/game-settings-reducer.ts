@@ -14,10 +14,11 @@ export const initialSettingsState: IGameSettingsState = {
 export const gameSettingsReducer = (state = initialSettingsState, action: GameSettingsAction): IGameSettingsState => {
   switch (action.type) {
     case GameSettingsActionTypes.SET_GAME_MUSIC_VOLUME:
-      return { ...state, musicVolume: action.payload };
-
     case GameSettingsActionTypes.SET_GAME_EFFECTS_VOLUME:
-      return { ...state, effectsVolume: action.payload };
+    case GameSettingsActionTypes.SET_GAME_USER_NICK:
+    case GameSettingsActionTypes.SET_GAME_THEME:
+    case GameSettingsActionTypes.SET_GAME_LANG:
+      return { ...state, ...action.payload };
 
     case GameSettingsActionTypes.SET_ALL_GAME_SETTINGS:
       return { ...action.payload };

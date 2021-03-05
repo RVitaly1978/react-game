@@ -1,3 +1,4 @@
+import { saveToLocalStorage } from './../../utils/save-to-localStorage';
 import { ThunkDispatch } from 'redux-thunk';
 
 import { login, registration } from '../../api/auth-api';
@@ -40,7 +41,9 @@ export const setUserLogout = (): AuthAction => ({
 });
 
 export const userLogout = () => {
-  return (dispatch: ThunkDispatch<IAuthState, void, AuthAction>) => {
+  return (dispatch: ThunkDispatch<IAuthState, void, AuthAction | GameSettingsAction | GameOptionsAction>) => {
+    dispatch(setAllUserSettings(initialSettingsState));
+    dispatch(setAllGameOptions(initialOptionsState));
     dispatch(setUserLogout());
     localStorage.removeItem('react-game-token');
     localStorage.removeItem('react-game-data');
@@ -59,8 +62,10 @@ export const userLogin = (email: string, password: string) => {
       dispatch(setAllUserSettings(settings));
       dispatch(setAllGameOptions(options));
 
-      const cards = getCards(options);
-      dispatch(setNewGame({ ...initialGameState, cards }));
+      const game = { ...initialGameState, cards: getCards(options) };
+      dispatch(setNewGame(game));
+
+      saveToLocalStorage(game, settings, options);
     } catch (e) {
       dispatch(setUserAuthError(e.message));
       throw new Error();
@@ -79,8 +84,10 @@ export const userRegistration = (email: string, password: string) => {
 
       dispatch(setUserAuth(id, email));
 
-      const cards = getCards(options);
-      dispatch(setNewGame({ ...initialGameState, cards }));
+      const game = { ...initialGameState, cards: getCards(options) };
+      dispatch(setNewGame(game));
+
+      saveToLocalStorage(game, settings, options);
     } catch (e) {
       dispatch(setUserAuthError(e.message));
       throw new Error();

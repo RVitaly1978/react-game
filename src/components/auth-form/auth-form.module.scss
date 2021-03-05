@@ -114,6 +114,10 @@
     text-decoration: none;
     color: firebrick;
   }
+
+  & button {
+    min-width: 11rem;
+  }
 }
 
 .form_group_loader {
