@@ -1,49 +1,38 @@
 export enum StatisticsActionTypes {
   SET_USERS_HIGH_SCORES = 'SET_USERS_HIGH_SCORES',
   SET_USER_STATISTICS = 'SET_USER_STATISTICS',
-  SET_STATISTICS_ERROR = 'SET_STATISTICS_ERROR',
 };
 
-export interface IPayloadUserStatistics {
-  _id: string;
+export interface IPayloadStatistics {
   date: Date;
-  time?: number;
-  score?: number;
-};
-
-export interface IPayloadUsersHighScores {
-  _id: string;
+  difficulty: string;
   email: string;
-  date: Date;
-  time?: number;
-  score?: number;
-};
-
-export interface ISetStatisticsError {
-  type: StatisticsActionTypes.SET_STATISTICS_ERROR;
-  payload: {
-    statisticsError: null | string;
-  };
+  field: string;
+  moves: number;
+  owner: string;
+  speed: string;
+  time: number;
+  userNick: string;
+  _id: string;
 };
 
 export interface ISetUsersHighScores {
   type: StatisticsActionTypes.SET_USERS_HIGH_SCORES;
   payload: {
-    usersHighScores: IPayloadUsersHighScores[];
+    usersHighScores: IPayloadStatistics[];
   };
 };
 
 export interface ISetUserStatistics {
   type: StatisticsActionTypes.SET_USER_STATISTICS;
   payload: {
-    userStatistics: IPayloadUserStatistics[];
+    userStatistics: IPayloadStatistics[];
   };
 };
 
-export type StatisticsAction = ISetUsersHighScores | ISetUserStatistics | ISetStatisticsError;
+export type StatisticsAction = ISetUsersHighScores | ISetUserStatistics;
 
 export interface IStatisticsState {
-  usersHighScores: IPayloadUsersHighScores[];
-  userStatistics: IPayloadUserStatistics[];
-  statisticsError: null | string;
+  usersHighScores: IPayloadStatistics[];
+  userStatistics: IPayloadStatistics[];
 };

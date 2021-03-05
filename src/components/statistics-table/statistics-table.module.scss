@@ -1,0 +1,27 @@
+@import '../../styles/abstract/abstracts';
+
+.table {
+  
+}
+
+.error {
+  width: calc(100% - 1rem);
+  padding: 0.5rem;
+
+  background-color: $color-background-dialog;
+  color: $color-text-dialog;
+
+  box-shadow: $box-shadow-dialog;
+
+  border-radius: $radius-border-view;
+
+  font-size: inherit;
+
+  user-select: none;
+
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+  -moz-animation: fadeIn ease 1s;
+  -o-animation: fadeIn ease 1s;
+  -ms-animation: fadeIn ease 1s;
+}

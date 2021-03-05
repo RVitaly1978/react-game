@@ -43,6 +43,16 @@ export const setOptionsSavingError = (optionsSavingError: string | null): Common
   payload: { optionsSavingError },
 });
 
+export const setStatisticsFetching = (isStatisticsFetching: boolean): CommonAction => ({
+  type: CommonActionTypes.SET_STATISTICS_FETCHING,
+  payload: { isStatisticsFetching },
+});
+
+export const setStatisticsFetchingError = (statisticsFetchingError: string | null): CommonAction => ({
+  type: CommonActionTypes.SET_STATISTICS_FETCHING_ERROR,
+  payload: { statisticsFetchingError },
+});
+
 // thunk creators --------------------------------------------------
 
 export const initialization = () => {

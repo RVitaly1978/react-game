@@ -1,51 +1,50 @@
-import { Dispatch } from 'react';
+import { ThunkDispatch } from 'redux-thunk';
 
 import { getStatistics, getHighScores } from '../../api/statistics-api';
+import { CommonAction } from '../../types/common';
+import { setStatisticsFetching, setStatisticsFetchingError } from './common';
 import {
-  StatisticsActionTypes,
-  IPayloadUserStatistics,
-  StatisticsAction,
-  IPayloadUsersHighScores} from '../../types/statistics';
+  StatisticsActionTypes, IPayloadStatistics, StatisticsAction, IStatisticsState,
+} from '../../types/statistics';
 
-export const setUserStatisticsError = (error: string): StatisticsAction => ({
-  type: StatisticsActionTypes.SET_STATISTICS_ERROR,
-  payload: {
-    statisticsError: error,
-  },
-});
-
-export const setUserStatistics = (statistics: IPayloadUserStatistics[]): StatisticsAction => ({
+export const setUserStatistics = (userStatistics: IPayloadStatistics[]): StatisticsAction => ({
   type: StatisticsActionTypes.SET_USER_STATISTICS,
-  payload: {
-    userStatistics: statistics,
-  },
+  payload: { userStatistics },
 });
 
-export const setUserHighScores = (games: IPayloadUsersHighScores[]): StatisticsAction => ({
+export const setUserHighScores = (usersHighScores: IPayloadStatistics[]): StatisticsAction => ({
   type: StatisticsActionTypes.SET_USERS_HIGH_SCORES,
-  payload: {
-    usersHighScores: games,
-  },
+  payload: { usersHighScores },
 });
+
+// thunk creators --------------------------------------------
 
 export const fetchUserStatistics = () => {
-  return async (dispatch: Dispatch<StatisticsAction>) => {
+  return async (dispatch: ThunkDispatch<
+    IStatisticsState, void, StatisticsAction | CommonAction>) => {
     try {
+      dispatch(setStatisticsFetching(true));
       const res = await getStatistics();
       dispatch(setUserStatistics(res));
     } catch (e) {
-      dispatch(setUserStatisticsError(e.message));
+      dispatch(setStatisticsFetchingError(e.message));
+    } finally {
+      dispatch(setStatisticsFetching(false));
     }
   }
 };
 
 export const fetchUsersHighScores = () => {
-  return async (dispatch: Dispatch<StatisticsAction>) => {
+  return async (dispatch: ThunkDispatch<
+    IStatisticsState, void, StatisticsAction | CommonAction>) => {
     try {
+      dispatch(setStatisticsFetching(true));
       const res = await getHighScores();
       dispatch(setUserHighScores(res));
     } catch (e) {
-      dispatch(setUserStatisticsError(e.message));
+      dispatch(setStatisticsFetchingError(e.message));
+    } finally {
+      dispatch(setStatisticsFetching(false));
     }
   }
 };

@@ -9,6 +9,8 @@ export const initState: ICommonState = {
   gameSavingError: null,
   isOptionsSaving: false,
   optionsSavingError: null,
+  isStatisticsFetching: false,
+  statisticsFetchingError: null,
 };
 
 export const commonReducer = (state = initState, action: CommonAction): ICommonState => {
@@ -18,6 +20,8 @@ export const commonReducer = (state = initState, action: CommonAction): ICommonS
     case CommonActionTypes.SET_GAME_SAVING_ERROR:
     case CommonActionTypes.SET_OPTIONS_SAVING:
     case CommonActionTypes.SET_OPTIONS_SAVING_ERROR:
+    case CommonActionTypes.SET_STATISTICS_FETCHING:
+    case CommonActionTypes.SET_STATISTICS_FETCHING_ERROR:
       return { ...state, ...action.payload };
 
     default:

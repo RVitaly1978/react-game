@@ -31,9 +31,11 @@ const GameField: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (isEndGame) {
-      dispatch(saveResult());
-    }
+    isEndGame && dispatch(saveResult());
+
+    return () => {
+      isEndGame && dispatch(newGame());
+    };
   }, [dispatch, isEndGame]);
 
   useEffect(() => {
