@@ -7,11 +7,11 @@ export const SETTINGS_ROUTE: string = '/settings';
 export const THEME_LIGHT: string = 'light';
 export const THEME_DARK: string = 'dark';
 
-interface IOptionsNum {
+export interface IOptionsNum {
   [key: string]: number;
 };
 
-interface IOptionsStr {
+export interface IOptionsStr {
   [key: string]: string;
 };
 

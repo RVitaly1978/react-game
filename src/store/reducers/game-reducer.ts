@@ -16,7 +16,6 @@ export const initialGameState: IGameState = {
 
 export const gameReducer = (state = initialGameState, action: GameAction): IGameState => {
   switch (action.type) {
-
     case GameActionTypes.SET_NEW_GAME:
       return { ...action.payload.game };
 
@@ -24,15 +23,11 @@ export const gameReducer = (state = initialGameState, action: GameAction): IGame
       return { ...state, isEndGame: true, isGameInProgress: false };
 
     case GameActionTypes.SET_IS_PAUSE_GAME:
-      return { ...state, ...action.payload };
-
     case GameActionTypes.SET_IS_GAME_IN_PROGRESS:
-      return { ...state, ...action.payload };
-
     case GameActionTypes.SET_GAME_LOADING:
-      return { ...state, ...action.payload };
-
     case GameActionTypes.SET_GAME_ERROR:
+    case GameActionTypes.SET_GAME_FLIPPED:
+    case GameActionTypes.SET_GAME_PAIR:
       return { ...state, ...action.payload };
 
     case GameActionTypes.SET_GAME_TIME_COUNT:
@@ -40,12 +35,6 @@ export const gameReducer = (state = initialGameState, action: GameAction): IGame
 
     case GameActionTypes.SET_GAME_MOVE_COUNT:
       return { ...state, moveCount: state.moveCount + 1 };
-
-    case GameActionTypes.SET_GAME_PAIR:
-      return { ...state, ...action.payload };
-
-    case GameActionTypes.SET_GAME_FLIPPED:
-      return { ...state, ...action.payload };
 
     case GameActionTypes.SET_GAME_INACTIVE:
       return { ...state, inactive: [...state.inactive, ...action.payload.inactive] };

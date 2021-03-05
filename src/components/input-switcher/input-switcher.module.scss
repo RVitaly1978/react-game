@@ -1,0 +1,27 @@
+@import '../../styles/abstract/abstracts';
+
+.container {
+  position: relative;
+
+  @include flex();
+}
+
+.item {
+  @include flex();
+
+  border-left: $border;
+  border-right: $border;
+
+  &:first-child {
+    border-left: none;
+  }
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.item_radio {
+  width: 7.0rem;
+  height: 2.5rem;
+}

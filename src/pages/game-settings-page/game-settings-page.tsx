@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useTypedSelector } from '../../components/hooks';
+import OptionsForm from '../../components/options-form';
 import { newGame } from '../../store/action-creators/game';
 import { saveUserGameOptions } from '../../store/action-creators/options';
 import {
@@ -37,6 +38,7 @@ const GameSettingsPage: React.FC = () => {
 
   return (
     <div className={s.container}>
+      <OptionsForm />
       {/* <ul>
         {Object.keys(options).map((key) => <li key={key}>{options[key as keyof IGameOptionsState]}</li>)}
       </ul>
