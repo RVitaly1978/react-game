@@ -1,8 +1,8 @@
 import React from 'react';
 
+import ErrorMessage from '../error-message';
 import { useTypedSelector } from '../hooks';
 import { Congratulations } from './congratulations';
-import { GameError } from './game-error';
 
 import s from './game-field.module.scss';
 
@@ -15,8 +15,9 @@ export const ModalGameWindow: React.FC<IStartGameWindowProps> = ({
   onClickContinue, onClickNew,
 }) => {
   const {
-    timeCount, moveCount, isLoading, error, isEndGame, isGameInProgress,
+    timeCount, moveCount, isEndGame, isGameInProgress,
   } = useTypedSelector(s => s.game);
+  const { isGameSaving, gameSavingError } = useTypedSelector(s => s.common);
 
   return (
     <>
@@ -29,11 +30,11 @@ export const ModalGameWindow: React.FC<IStartGameWindowProps> = ({
 
       <button
         onClick={onClickNew}
-        disabled={isLoading}
-      >{isLoading ? 'Saving result...' : 'New game'}
+        disabled={isGameSaving}
+      >{isGameSaving ? 'Saving result...' : 'New game'}
       </button>
 
-      <GameError error={error} />
+      <ErrorMessage error={gameSavingError} classes={s.game_error} />
     </>
   );
 };

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { initialization } from '../../store/action-creators/init';
+import { initialization } from '../../store/action-creators/common';
 import { useTypedSelector } from '../hooks';
 
 import Header from '../header';
@@ -13,7 +13,7 @@ import { BounceLoader } from '../bounce-loader/bounce-loader';
 import s from './app.module.scss';
 
 const App: React.FC = () => {
-  const isLoading = useTypedSelector(s => s.init.isInitialLoading);
+  const isLoading = useTypedSelector(s => s.common.isInitialLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {

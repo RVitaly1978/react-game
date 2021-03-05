@@ -3,6 +3,8 @@ import { Dispatch } from 'react';
 
 import { saveResults } from './../../api/game-api';
 import { initialGameState } from './../reducers/game-reducer';
+import { setGameSaving, setGameSavingError } from './common';
+import { CommonAction } from './../../types/common';
 import { GameAction, GameActionTypes, IGameState} from '../../types/game';
 import { RootState } from './../reducers/index';
 import { saveToLocalStorage } from '../../utils/save-to-localStorage';
@@ -25,16 +27,6 @@ export const setIsPauseGame = (isPauseGame: boolean): GameAction => ({
 export const setIsGameInProgress = (isGameInProgress: boolean): GameAction => ({
   type: GameActionTypes.SET_IS_GAME_IN_PROGRESS,
   payload: { isGameInProgress },
-});
-
-export const setGameLoading = (isLoading: boolean): GameAction => ({
-  type: GameActionTypes.SET_GAME_LOADING,
-  payload: { isLoading },
-});
-
-export const setGameError = (error: string | null): GameAction => ({
-  type: GameActionTypes.SET_GAME_ERROR,
-  payload: { error },
 });
 
 export const setTimeCount = (): GameAction => ({
@@ -60,6 +52,7 @@ export const setGameInactive = (inactive: number[]): GameAction => ({
   payload: { inactive },
 });
 
+// thunk creators ----------------------------------------------------------
 
 export const pauseGame = (isPauseGame: boolean) => {
   return (dispatch: Dispatch<GameAction>, getState: () => RootState ) => {
@@ -121,7 +114,8 @@ export const setGameTic = (id: number) => {
 };
 
 export const saveResult = () => {
-  return async (dispatch: ThunkDispatch<RootState, void, GameAction>, getState: () => RootState ) => {
+  return async (dispatch: ThunkDispatch<
+    RootState, void, GameAction | CommonAction>, getState: () => RootState ) => {
     const { game, settings, options } = getState();
     const result = {
       time: game.timeCount,
@@ -131,12 +125,12 @@ export const saveResult = () => {
     };
 
     try {
-      dispatch(setGameLoading(true));
+      dispatch(setGameSaving(true));
       await saveResults(result, settings, options);
     } catch (e) {
-      dispatch(setGameError(e.message));
+      dispatch(setGameSavingError(e.message));
     } finally {
-      dispatch(setGameLoading(false));
+      dispatch(setGameSaving(false));
     }
   };
 };

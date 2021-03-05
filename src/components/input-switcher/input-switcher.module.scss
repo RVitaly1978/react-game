@@ -9,12 +9,8 @@
 .item {
   @include flex();
 
-  border-left: $border;
   border-right: $border;
-
-  &:first-child {
-    border-left: none;
-  }
+  border-width: 1px;
 
   &:last-child {
     border-right: none;

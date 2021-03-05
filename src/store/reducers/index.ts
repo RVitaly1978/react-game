@@ -5,10 +5,10 @@ import { gameOptionsReducer } from './game-options-reducer';
 import { gameReducer } from './game-reducer';
 import { statisticsReducer } from './statistics-reducer';
 import { authReducer } from './auth-reducer';
-import { initReducer } from './init-reducer';
+import { commonReducer } from './common-reducer';
 
 export const rootReducer = combineReducers({
-  init: initReducer,
+  common: commonReducer,
   auth: authReducer,
   settings: gameSettingsReducer,
   options: gameOptionsReducer,

@@ -8,8 +8,6 @@ export enum GameActionTypes {
   SET_GAME_FLIPPED = 'SET_GAME_FLIPPED',
   SET_GAME_INACTIVE = 'SET_GAME_INACTIVE',
   SET_IS_GAME_IN_PROGRESS = 'SET_IS_GAME_IN_PROGRESS',
-  SET_GAME_LOADING = 'SET_GAME_LOADING',
-  SET_GAME_ERROR = 'SET_GAME_ERROR',
 };
 
 export interface ISetNewGame {
@@ -66,23 +64,9 @@ export interface ISetGameInactive {
   };
 };
 
-export interface ISetGameLoading {
-  type: GameActionTypes.SET_GAME_LOADING;
-  payload: {
-    isLoading: boolean;
-  };
-};
-
-export interface ISetGameError {
-  type: GameActionTypes.SET_GAME_ERROR;
-  payload: {
-    error: string | null;
-  };
-};
-
 export type GameAction = ISetIsEndGame | ISetIsPauseGame | ISetNewGame
   | ISetGameTimeCount | ISetGameMoveCount | ISetGameInactive | ISetGameFlipped
-  | ISetIsGameInProgress | ISetGamePair | ISetGameLoading | ISetGameError;
+  | ISetIsGameInProgress | ISetGamePair;
 
 export interface IGameCard {
   id: number;
@@ -99,6 +83,4 @@ export interface IGameState {
   inactive: number[];
   moveCount: number;
   timeCount: number;
-  isLoading: boolean;
-  error: string | null;
 };

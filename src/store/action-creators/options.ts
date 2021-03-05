@@ -1,5 +1,7 @@
 import { ThunkDispatch } from 'redux-thunk';
 
+import { CommonAction } from './../../types/common';
+import { setOptionsSaving, setOptionsSavingError } from './common';
 import { RootState } from './../reducers/index';
 import { setOptions } from '../../api/options-api';
 import {
@@ -11,14 +13,22 @@ export const setAllGameOptions = (options: IGameOptionsState): GameOptionsAction
   payload: options,
 });
 
-export const saveUserGameOptions = (options: IGameOptionsState) => {
-  return async (dispatch: ThunkDispatch<RootState, void, GameOptionsAction>, getState: () => RootState) => {
+export const saveGameOptions = (options: IGameOptionsState) => {
+  return async (dispatch: ThunkDispatch<
+    RootState, void, GameOptionsAction | CommonAction>, getState: () => RootState) => {
     const { settings } = getState();
+
     try {
+      dispatch(setOptionsSaving(true));
+
       await setOptions(options, settings);
+
       dispatch(setAllGameOptions(options));
+      dispatch(setOptionsSavingError(null));
     } catch (e) {
-      // dispatch(setError(e.message));
+      dispatch(setOptionsSavingError(e.message));
+    } finally {
+      dispatch(setOptionsSaving(false));
     }
   }
 };

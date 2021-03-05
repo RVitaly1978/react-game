@@ -10,8 +10,6 @@ export const initialGameState: IGameState = {
   inactive: [],
   cards: [],
   flipped: [],
-  isLoading: false,
-  error: null,
 };
 
 export const gameReducer = (state = initialGameState, action: GameAction): IGameState => {
@@ -24,8 +22,6 @@ export const gameReducer = (state = initialGameState, action: GameAction): IGame
 
     case GameActionTypes.SET_IS_PAUSE_GAME:
     case GameActionTypes.SET_IS_GAME_IN_PROGRESS:
-    case GameActionTypes.SET_GAME_LOADING:
-    case GameActionTypes.SET_GAME_ERROR:
     case GameActionTypes.SET_GAME_FLIPPED:
     case GameActionTypes.SET_GAME_PAIR:
       return { ...state, ...action.payload };

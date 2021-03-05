@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { userLogin, userRegistration, setUserAuthError } from '../../store/action-creators/auth';
+import {
+  userLogin, userRegistration, setUserAuthError,
+} from '../../store/action-creators/auth';
 import { GAME_ROUTE } from '../../utils/constants';
 import { useTypedSelector } from '../hooks';
 
 import { PasswordField } from './password-field';
 import { FormButtonGroup } from './button-group';
-import { FormAuthError } from './auth-error';
+import ErrorMessage from '../error-message';
 
 import s from './auth-form.module.scss';
 
@@ -55,7 +57,7 @@ const AuthForm: React.FC<IAuthFormProps> = ({ isLogin }) => {
 
   return (
     <form className={s.container} onSubmit={handleSubmit}>
-      <FormAuthError error={userAuthError} />
+      <ErrorMessage error={userAuthError} classes={s.form_error} />
 
       <div className={s.form_group}>
         <label htmlFor='email'>Email</label>
