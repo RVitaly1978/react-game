@@ -1,8 +1,10 @@
 export const GAME_ROUTE: string = '/';
 export const REGISTRATION_ROUTE: string = '/registration';
 export const LOGIN_ROUTE: string = '/login';
-export const STATISTICS_ROUTE: string = '/statistics';
+export const STATISTICS_ROUTE: string = '/statistics/:url';
 export const SETTINGS_ROUTE: string = '/settings';
+export const USER_STATISTICS_ROUTE: string = '/statistics/user';
+export const HIGH_SCORES_ROUTE: string = '/statistics/highscores';
 
 export const THEME_LIGHT: string = 'light';
 export const THEME_DARK: string = 'dark';

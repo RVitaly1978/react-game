@@ -73,7 +73,20 @@ const StatisticsTable: React.FC<IStatisticsTableProps> = ({ data, isLoading, err
     });
 
   return (
-    <>{statistics}</>
+    <table className={s.table}>
+      <tbody className={s.table_body}>
+        <tr className={s.table_head}>
+          <td>user</td>
+          <td>field</td>
+          <td>speed</td>
+          <td>difficulty</td>
+          <td>time</td>
+          <td>moves</td>
+          <td>date</td>
+        </tr>
+        {statistics}
+      </tbody>
+    </table>
   );
 }
 

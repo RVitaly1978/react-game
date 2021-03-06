@@ -1,5 +1,46 @@
 @import '../../styles/abstract/abstracts';
 
+.table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  color: $color-text;
+
+  user-select: none;
+
+  @extend %animation-fadeIn;
+
+  @include media-surface {
+    font-size: 0.7em;
+  }
+
+  th,
+  td {
+    padding: 0.4rem 0.2rem;
+    border: 1px solid $color-shadow-light;
+    text-align: center;
+  
+    @include media-mobile {
+      padding: 0.2rem 0.1rem;
+    }
+  }
+}
+
+.table_body {
+  background-color: $color-background;
+}
+
+.table_head {
+  background-color: $color-shadow-light;
+
+  td {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    font-size: 0.75em;
+  }
+}
+
 .table_row {
   @extend %transition-hover;
 
@@ -20,9 +61,12 @@
 }
 
 .table_cell__name {
-  text-align: left;
+  & p {
+    text-align: left;
+  }
 
   & p:last-child {
+    padding-top: 0.2rem;
     opacity: 0.75;
     font-size: 0.75em;
   }
