@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import ErrorMessage from '../../components/error-message';
 
 import { useTypedSelector } from '../../components/hooks';
 import StatisticsTable from '../../components/statistics-table';
@@ -25,8 +24,8 @@ const StatisticsPage: React.FC = () => {
       <div className={s.content}>
 
       <table className={s.table}>
-        <tbody>
-          <tr>
+        <tbody className={s.table_body}>
+          <tr className={s.table_head}>
             <td>user</td>
             <td>field</td>
             <td>speed</td>

@@ -26,31 +26,42 @@ const StatisticsTable: React.FC<IStatisticsTableProps> = ({ data, isLoading, err
 
   if (error) {
     return (
-      <>
-        <tr><td colSpan={7}>
+      <><tr className={s.table_row}>
+        <td colSpan={7} className={s.table_cell__info}>
           <ErrorMessage error={error} classes={s.error} />
-        </td></tr>
-      </>
+        </td>
+      </tr></>
     );
   }
 
   if (isLoading) {
     return (
-      <><tr><td colSpan={7}><BounceLoader /></td></tr></>
+      <><tr className={s.table_row}>
+        <td colSpan={7} className={s.table_cell__info}>
+          <BounceLoader styleClass={s.loader} />
+        </td>
+      </tr></>
     );
   }
 
   if (!data.length) {
     return (
-      <><tr><td colSpan={7}>No statistics yet</td></tr></>
+      <><tr className={s.table_row}>
+        <td colSpan={7} className={s.table_cell__info}>
+          No statistics yet
+        </td>
+      </tr></>
     );
   }
 
   const statistics = data.map(({
     date, difficulty, email, field, moves, speed, time, userNick, _id }) => {
       return (
-        <tr key={_id}>
-          <td>{`${userNick} (${email})`}</td>
+        <tr key={_id} className={s.table_row}>
+          <td className={s.table_cell__name}>
+            <p>{userNick}</p>
+            <p>{`(${email})`}</p>
+          </td>
           <td>{field}</td>
           <td>{speed}</td>
           <td>{difficulty}</td>

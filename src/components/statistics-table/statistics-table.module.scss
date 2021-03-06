@@ -1,12 +1,37 @@
 @import '../../styles/abstract/abstracts';
 
-.table {
-  
+.table_row {
+  @extend %transition-hover;
+
+  @include media-hover {
+    &:hover {
+      background-color: $color-shadow-light;
+    }
+  }
+}
+
+.table_cell__info {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  border: none;
+
+  text-align: center;
+}
+
+.table_cell__name {
+  text-align: left;
+
+  & p:last-child {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
 }
 
 .error {
-  width: calc(100% - 1rem);
+  width: 100%;
   padding: 0.5rem;
+  margin-top: 1rem;
 
   background-color: $color-background-dialog;
   color: $color-text-dialog;
@@ -24,4 +49,9 @@
   -moz-animation: fadeIn ease 1s;
   -o-animation: fadeIn ease 1s;
   -ms-animation: fadeIn ease 1s;
+}
+
+.loader {
+  margin: 2rem auto;
+  width: 8rem;
 }

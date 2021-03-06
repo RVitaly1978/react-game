@@ -34,8 +34,8 @@ export const fields: IOptionsNum = {
 export const SPEED_SLOW: string = 'slow';
 export const SPEED_FAST: string = 'fast';
 export const delays: IOptionsNum = {
-  [SPEED_SLOW]: 3000,
-  [SPEED_FAST]: 1000,
+  [SPEED_SLOW]: 4000,
+  [SPEED_FAST]: 1500,
 };
 
 export const DIFFICULTY_EASY: string = 'easy';
