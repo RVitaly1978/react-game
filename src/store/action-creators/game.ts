@@ -70,6 +70,7 @@ export const newGame = () => {
     const { options } = getState();
     const cards = getCards(options);
     dispatch(setNewGame({ ...initialGameState, cards }));
+    dispatch(setGameFlipped(cards.map(({ id }) => id)));
   };
 };
 

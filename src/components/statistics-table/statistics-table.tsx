@@ -34,11 +34,11 @@ const StatisticsTable: React.FC<IStatisticsTableProps> = ({ data, isLoading, err
 
   if (!data.length) {
     return (
-      <><tr className={s.table_row}>
+      <tr className={s.table_row}>
         <td colSpan={7} className={s.table_cell__info}>
           No statistics yet
         </td>
-      </tr></>
+      </tr>
     );
   }
 

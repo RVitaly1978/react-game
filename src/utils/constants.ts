@@ -33,11 +33,12 @@ export const fields: IOptionsNum = {
   [FIELD_BIG]: 36,
 };
 
+export const INIT_DELAY: number = 5000;
 export const SPEED_SLOW: string = 'slow';
 export const SPEED_FAST: string = 'fast';
 export const delays: IOptionsNum = {
-  [SPEED_SLOW]: 4000,
-  [SPEED_FAST]: 1500,
+  [SPEED_SLOW]: 2000,
+  [SPEED_FAST]: 1000,
 };
 
 export const DIFFICULTY_EASY: string = 'easy';

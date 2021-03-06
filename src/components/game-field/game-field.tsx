@@ -5,7 +5,7 @@ import {
   newGame, pauseGame, updateTimeCount, setGameTic,
   setGameFlipped, setIsGameInProgress, saveResult } from '../../store/action-creators/game';
 import { useTypedSelector } from '../hooks';
-import { delays, FIELD_BIG } from '../../utils/constants';
+import { delays, FIELD_BIG, INIT_DELAY } from '../../utils/constants';
 
 import { TimeField } from './time-field';
 import { MovesField } from './moves-field';
@@ -39,10 +39,14 @@ const GameField: React.FC = () => {
   }, [dispatch, isEndGame]);
 
   useEffect(() => {
-    if (!isEndGame && isGameInProgress && !isPauseGame && timeCount === 0) {
-      dispatch(setGameFlipped([]));
+    let timer: number | null = null;
+    if (!isEndGame && isGameInProgress) {
+      timer = window.setTimeout(() => {
+        dispatch(setGameFlipped([]));
+      }, INIT_DELAY);
     }
-  }, [dispatch, isEndGame, isGameInProgress, isPauseGame, timeCount]);
+    return () => {timer && clearInterval(timer)};
+  }, [dispatch, isEndGame, isGameInProgress, cards]);
 
   useEffect(() => {
     let timer: number | null = null;
@@ -65,7 +69,6 @@ const GameField: React.FC = () => {
   const handleNewGameClick = () => {
     dispatch(newGame());
     dispatch(setIsGameInProgress(true));
-    dispatch(setGameFlipped(cards.map(({ id }) => id)));
   };
 
   const handleContinueGameClick = () => {
