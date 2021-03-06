@@ -14,6 +14,8 @@ const Footer: React.FC = () => {
         &nbsp;{c.authorGitHubText}
       </a>
 
+      <p>{c.year}</p>
+
       <a className={s.footer_link} href={c.rssLink}>
         <RssLogo styleClass={s.footer_icon__rss}/>
       </a>

@@ -51,4 +51,5 @@ export const footer = {
   authorGitHubLink: 'https://github.com/RVitaly1978',
   authorGitHubText: 'RVitaly1978',
   rssLink: 'https://rs.school/js/',
+  year: '2021',
 };
