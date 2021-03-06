@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import s from './game-card.module.scss';
 
 export interface GameCardProps {
-  id: number;
+  id: string;
   face: string;
   delay: number;
   isFlipped: boolean;
@@ -40,11 +40,13 @@ const GameCard: React.FC<GameCardProps> = ({ face, isFlipped, isInactive, delay,
     return () => {timer && clearInterval(timer)};
   }, [isFlipped, isInactive, cardClasses, delay]);
 
+  const faceContent = face.split('').map((char, idx) => <p key={idx}>{char}</p>);
+
   return (
     <div className={containerClasses} data-role='card'>
       <div className={cardClasses}>
         <div className={s.card_face} onClick={onClick} />
-        <div className={`${s.card_face} ${s.card_face__back}`}>{face}</div>
+        <div className={`${s.card_face} ${s.card_face__back}`}>{faceContent}</div>
       </div>
     </div>
   );

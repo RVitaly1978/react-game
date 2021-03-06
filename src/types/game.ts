@@ -46,21 +46,21 @@ export interface ISetIsPauseGame {
 export interface ISetGamePair {
   type: GameActionTypes.SET_GAME_PAIR;
   payload: {
-    pair: number[];
+    pair: string[];
   };
 };
 
 export interface ISetGameFlipped {
   type: GameActionTypes.SET_GAME_FLIPPED;
   payload: {
-    flipped: number[];
+    flipped: string[];
   };
 };
 
 export interface ISetGameInactive {
   type: GameActionTypes.SET_GAME_INACTIVE;
   payload: {
-    inactive: number[];
+    inactive: string[];
   };
 };
 
@@ -69,7 +69,7 @@ export type GameAction = ISetIsEndGame | ISetIsPauseGame | ISetNewGame
   | ISetIsGameInProgress | ISetGamePair;
 
 export interface IGameCard {
-  id: number;
+  id: string;
   face: string;
 };
 
@@ -78,9 +78,9 @@ export interface IGameState {
   isGameInProgress: boolean;
   isEndGame: boolean;
   cards: IGameCard[],
-  flipped: number[];
-  pair: number[];
-  inactive: number[];
+  flipped: string[];
+  pair: string[];
+  inactive: string[];
   moveCount: number;
   timeCount: number;
 };

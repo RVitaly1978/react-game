@@ -37,17 +37,17 @@ export const setMoveCount = (): GameAction => ({
   type: GameActionTypes.SET_GAME_MOVE_COUNT,
 });
 
-export const setGamePair = (pair: number[]): GameAction => ({
+export const setGamePair = (pair: string[]): GameAction => ({
   type: GameActionTypes.SET_GAME_PAIR,
   payload: { pair },
 });
 
-export const setGameFlipped = (flipped: number[]): GameAction => ({
+export const setGameFlipped = (flipped: string[]): GameAction => ({
   type: GameActionTypes.SET_GAME_FLIPPED,
   payload: { flipped },
 });
 
-export const setGameInactive = (inactive: number[]): GameAction => ({
+export const setGameInactive = (inactive: string[]): GameAction => ({
   type: GameActionTypes.SET_GAME_INACTIVE,
   payload: { inactive },
 });
@@ -84,7 +84,7 @@ export const updateTimeCount = () => {
   };
 };
 
-export const setGameTic = (id: number) => {
+export const setGameTic = (id: string) => {
   return (dispatch: Dispatch<GameAction>, getState: () => RootState ) => {
     const { game, settings, options } = getState();
     const { cards, pair, flipped, inactive, isEndGame } = game;

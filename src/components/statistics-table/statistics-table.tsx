@@ -25,23 +25,11 @@ const StatisticsTable: React.FC<IStatisticsTableProps> = ({ data, isLoading, err
   }, [dispatch, error]);
 
   if (error) {
-    return (
-      <><tr className={s.table_row}>
-        <td colSpan={7} className={s.table_cell__info}>
-          <ErrorMessage error={error} classes={s.error} />
-        </td>
-      </tr></>
-    );
+    return <ErrorMessage error={error} classes={s.error} />;
   }
 
   if (isLoading) {
-    return (
-      <><tr className={s.table_row}>
-        <td colSpan={7} className={s.table_cell__info}>
-          <BounceLoader styleClass={s.loader} />
-        </td>
-      </tr></>
-    );
+    return <BounceLoader styleClass={s.loader} />;
   }
 
   if (!data.length) {

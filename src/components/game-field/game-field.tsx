@@ -54,7 +54,7 @@ const GameField: React.FC = () => {
     return () => {timer && clearInterval(timer)};
   }, [isEndGame, isPauseGame, dispatch]);
 
-  const handleCardClick = (id: number) => {
+  const handleCardClick = (id: string) => {
     dispatch(setGameFlipped([...flipped, id]));
 
     window.setTimeout(() => {
@@ -79,13 +79,15 @@ const GameField: React.FC = () => {
   const Cards = cards.map(({ id, face }) => {
     const isFlipped = (flipped.find((el) => el === id) !== undefined);
     const isInactive = (inactive.find((el) => el === id) !== undefined);
-    return <GameCard key={id}
-      id={id}
-      face={face}
-      delay={delay}
-      isFlipped={isFlipped}
-      isInactive={isInactive}
-      onClick={isPauseGame ? undefined : (() => handleCardClick(id))} />;
+    return (
+      <GameCard key={id}
+        id={id}
+        face={face}
+        delay={delay}
+        isFlipped={isFlipped}
+        isInactive={isInactive}
+        onClick={isPauseGame ? undefined : (() => handleCardClick(id))} />
+    );
   });
 
   const classes = (field === FIELD_BIG)

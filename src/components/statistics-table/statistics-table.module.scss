@@ -74,8 +74,9 @@
 
 .error {
   width: 100%;
+  max-width: 40rem;
   padding: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
 
   background-color: $color-background-dialog;
   color: $color-text-dialog;
@@ -96,6 +97,6 @@
 }
 
 .loader {
-  margin: 2rem auto;
+  margin-top: 2rem;
   width: 8rem;
 }
