@@ -1,0 +1,91 @@
+@import '../../styles/abstract/abstracts';
+
+.container {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+
+  @include flex($flex-direction: column, $justify-content: flex-start);
+
+  overflow: hidden;
+
+  @include media-mobile {
+    padding: 0.5rem 0 0 0.4rem;
+  }
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+
+  overflow-y: scroll;
+
+  @include flex($flex-direction: column, $justify-content: flex-start);
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-border-view;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 2px;
+  }
+}
+
+.nav {
+  position: relative;
+
+  width: 100%;
+
+  @include flex();
+}
+
+.link {
+  position: relative;
+
+  @include flex();
+
+  border-left: $border;
+  border-right: $border;
+
+  color: firebrick;
+
+  &:first-child {
+    border-left: none;
+  }
+
+  &:last-child {
+    border-right: none;
+  }
+
+  background-color: transparent;
+
+  @extend %transition-hover;
+
+  @include media-mobile {
+    font-size: 1.4rem;
+  }
+
+  @include media-hover {
+    &:hover {
+      background-color: $color-shadow-light;
+    }
+  }
+
+  & a {
+    padding: 1rem 2rem;
+    text-decoration: none;
+  }
+}
+
+.active {
+  @extend %transition-hover;
+  background-color: $color-shadow-light;
+}

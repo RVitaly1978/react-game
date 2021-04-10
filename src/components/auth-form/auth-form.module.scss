@@ -1,0 +1,150 @@
+@import '../../styles/abstract/abstracts';
+
+.container {
+  position: relative;
+
+  width: 40rem;
+  padding: 0.5rem;
+
+  border-radius: $radius-border-view;
+
+  @include media-surface {
+    width: 35rem;
+  }
+
+  @include media-mobile {
+    width: 30rem;
+  }
+
+  @include media-min {
+    width: 27rem;
+  }
+}
+
+.form_group {
+  width: 100%;
+  margin: 1rem 0 2rem;
+
+  @include flex($flex-direction: column, $align-items: flex-start);
+
+  @include media-landscape {
+    margin: 0.5rem 0 1rem;
+  }
+
+  & label {
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+
+    font-size: 0.8em;
+    opacity: 0.5;
+
+    cursor: pointer;
+    user-select: none;
+  }
+
+  $input-height: 3rem;
+  & input {
+    width: 100%;
+    height: $input-height;
+    padding: 0 0.5rem;
+
+    border: $border;
+    border-radius: 2px;
+
+    font-weight: 700;
+  
+    &::-ms-input-placeholder {
+      font-size: inherit;
+      color: inherit;
+      font-weight: 500;
+      opacity: 0.5;
+    }
+  
+    &::placeholder {
+      font-size: inherit;
+      color: inherit;
+      font-weight: 500;
+      opacity: 0.5;
+    }
+
+    &:focus {
+      box-shadow: inset $box-shadow-dialog;
+
+      &::placeholder {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.password_field {
+  position: relative;
+  width: 100%;
+
+  & input {
+    padding-right: 3rem;
+  }
+
+  .wrapper_button {
+    position: absolute;
+  
+    top: 0;
+    right: 0;
+    z-index: 1000;
+  
+    @include size(3rem);
+  
+    font-size: 1.5rem;
+  
+    border-radius: $btn-border-radius;
+  }
+
+  .wrapper_button_icon {
+    font-size: inherit;
+    color: firebrick;
+  }
+}
+
+.form_button_group {
+  height: 4rem;
+  @include flex($justify-content: flex-end);
+
+  & a {
+    margin-right: 2rem;
+    text-decoration: none;
+    color: firebrick;
+  }
+
+  & button {
+    min-width: 11rem;
+  }
+}
+
+.form_group_loader {
+  font-size: 1.2rem;
+}
+
+.form_error {
+  position: absolute;
+  bottom: 100%;
+
+  width: calc(100% - 1rem);
+  padding: 0.5rem;
+
+  background-color: $color-background-dialog;
+  color: $color-text-dialog;
+
+  box-shadow: $box-shadow-dialog;
+
+  border-radius: $radius-border-view;
+
+  font-size: inherit;
+
+  user-select: none;
+
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+  -moz-animation: fadeIn ease 1s;
+  -o-animation: fadeIn ease 1s;
+  -ms-animation: fadeIn ease 1s;
+}

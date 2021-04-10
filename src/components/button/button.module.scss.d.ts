@@ -1,0 +1,1 @@
+export const button_container: string;

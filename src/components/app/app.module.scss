@@ -1,0 +1,67 @@
+@import '../../styles/abstract/abstracts';
+
+$main-height: calc(100vh - #{$header-hight} - #{$footer-hight} - 4 * 0.5rem);
+$main-height-surface: calc(100vh - #{$header-hight-surface} - #{$footer-hight} - 2 * 0.5rem);
+
+.app {
+  width: 100%;
+}
+
+.app_content {
+  position: relative;
+
+  @include flex($flex-direction: column);
+
+  width: 100%;
+  max-width: $content-width-wide;
+  height: 100vh;
+
+  margin: 0 auto;
+  padding: 0.5rem $padding-wide 0.5rem;
+
+  @extend %animation-fadeIn;
+
+  @include media-wide {
+    max-width: unset;
+    padding-left: $padding-wide;
+    padding-right: $padding-wide;
+  }
+
+  @include media-laptop {
+    padding-left: $padding-laptop;
+    padding-right: $padding-laptop;
+  }
+
+  @include media-tablet {
+    padding-left: $padding-tablet;
+    padding-right: $padding-tablet;
+  }
+
+  @include media-landscape {
+    padding-left: $padding-landscape;
+    padding-right: $padding-landscape;
+  }
+
+  @include media-surface {
+    padding: 0;
+  }
+}
+
+.app_main {
+  position: relative;
+
+  width: 100%;
+  height: $main-height;
+  margin-top: 0.5rem;
+
+  @include flex();
+
+  @extend %transition-background;
+
+  border: $border;
+  border-radius: $radius-border-view;
+
+  @include media-surface {
+    height: $main-height-surface;
+  }
+}

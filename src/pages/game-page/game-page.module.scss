@@ -1,0 +1,29 @@
+@import '../../styles/abstract/abstracts';
+
+.container {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  @include flex($flex-direction: column);
+}
+
+.wrapper_button {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  z-index: 1000;
+
+  @include size(3rem);
+
+  font-size: 1.8rem;
+
+  border-radius: $btn-border-radius;
+}
+
+.wrapper_button_icon {
+  font-size: inherit;
+  color: firebrick;
+}

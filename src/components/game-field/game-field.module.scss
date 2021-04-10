@@ -1,0 +1,279 @@
+@import '../../styles/abstract/abstracts';
+
+.container {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  @include flex($flex-direction: column);
+}
+
+$cs: (
+  width: 9.5rem,
+  height: 14rem,
+);
+
+$cs-tablet: (
+  width: 7.5rem,
+  height: 12rem,
+);
+
+$cs-landscape: (
+  width: 6rem,
+  height: 10rem,
+);
+
+$cs-surface: (
+  width: 5rem,
+  height: 7.5rem,
+);
+
+$cs-mobile: (
+  width: 4.2rem,
+  height: 6.2rem,
+);
+
+$cs-min: (
+  width: 3.5rem,
+  height: 6rem,
+);
+
+.cards_container {
+  padding: 3.5rem 0.5rem 0.5rem;
+  display: grid;
+  grid-gap: 0.5rem;
+
+  &.small {
+    grid-template-columns: repeat(9, min-content);
+    grid-template-rows: repeat(2, min-content);
+  }
+
+  &.big {
+    grid-template-columns: repeat(9, min-content);
+    grid-template-rows: repeat(4, min-content);
+  }
+
+  & div[data-role='card'] {
+    width: map-get($cs, width);
+    height: map-get($cs, height);
+  }
+
+  @include media-tablet {
+    & div[data-role='card'] {
+      width: map-get($cs-tablet, width);
+      height: map-get($cs-tablet, height);
+    }
+  }
+
+  @include media-landscape {
+    &.small {
+      grid-template-columns: repeat(6, min-content);
+      grid-template-rows: repeat(3, min-content);
+    }
+
+    &.big {
+      grid-template-columns: repeat(6, min-content);
+      grid-template-rows: repeat(6, min-content);
+    }
+
+    & div[data-role='card'] {
+      width: map-get($cs-landscape, width);
+      height: map-get($cs-landscape, height);
+    }
+  }
+
+  @include media-surface {
+    & div[data-role='card'] {
+      width: map-get($cs-surface, width);
+      height: map-get($cs-surface, height);
+    }
+  }
+
+  @include media-mobile {
+    & div[data-role='card'] {
+      width: map-get($cs-mobile, width);
+      height: map-get($cs-mobile, height);
+    }
+  }
+
+  @include media-min {
+    & div[data-role='card'] {
+      width: map-get($cs-min, width);
+      height: map-get($cs-min, height);
+    }
+  }
+
+  @include media-tabletHight {
+    overflow-y: scroll;
+
+    &.small {
+      grid-template-columns: repeat(6, min-content);
+      grid-template-rows: repeat(3, min-content);
+    }
+
+    &.big {
+      grid-template-columns: repeat(8, min-content);
+      grid-template-rows: repeat(5, min-content);
+    }
+  }
+
+}
+
+.data_field {
+  font-size: 1.5em;
+  line-height: 1;
+
+  user-select: none;
+
+  & span:first-child {
+    font-size: 0.6em;
+    opacity: 0.5;
+  }
+
+  & span:last-child {
+    font-size: inherit;
+  }
+}
+
+.counts_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+
+  padding: 0.5rem;
+  @include flex();
+
+  div + div {
+    margin-left: 3rem;
+  }
+}
+
+.wrapper_button {
+  position: absolute;
+
+  top: 0;
+  right: 3rem;
+  z-index: 5;
+
+  @include size(3rem);
+
+  font-size: 1.8rem;
+
+  border-radius: $btn-border-radius;
+}
+
+.wrapper_button_icon {
+  font-size: inherit;
+  color: firebrick;
+}
+
+.modal_wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 10;
+
+  @include flex();
+
+  border-radius: inherit;
+
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+  -moz-animation: fadeIn ease 1s;
+  -o-animation: fadeIn ease 1s;
+  -ms-animation: fadeIn ease 1s;
+}
+
+.modal_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: inherit;
+
+  pointer-events: none;
+}
+
+.modal_content {
+  position: relative;
+
+  z-index: 20;
+
+  min-width: 27rem;
+  max-width: 50rem;
+  max-height: 100%;
+  padding: 0.5rem;
+
+  @include flex($flex-direction: column);
+
+  & button {
+    width: 100%;
+  }
+
+  button + button {
+    margin-top: 2rem;
+  }
+
+  @include media-tabletHight {
+    overflow-y: scroll;
+  }
+}
+
+.container_congratulations {
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 1rem;
+
+  border: $border;
+  border-radius: $radius-border-view;
+  background-color: $color-background-view;
+
+  user-select: none;
+
+  @include flex($flex-direction: column);
+}
+
+.container_congratulations_row {
+  width: 100%;
+  margin-top: 1rem;
+  @include flex();
+
+  div + div {
+    margin-left: 3rem;
+  }
+}
+
+.game_error {
+  position: fixed;
+  bottom: calc(#{$footer-hight} + 1.5rem);
+
+  min-width: 27rem;
+  max-width: 50rem;
+  padding: 0.5rem;
+
+  background-color: $color-background-dialog;
+  color: $color-text-dialog;
+
+  box-shadow: $box-shadow-dialog;
+
+  border-radius: $radius-border-view;
+
+  font-size: inherit;
+
+  user-select: none;
+
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+  -moz-animation: fadeIn ease 1s;
+  -o-animation: fadeIn ease 1s;
+  -ms-animation: fadeIn ease 1s;
+}

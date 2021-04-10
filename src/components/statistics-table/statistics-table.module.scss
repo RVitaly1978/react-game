@@ -1,0 +1,102 @@
+@import '../../styles/abstract/abstracts';
+
+.table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  color: $color-text;
+
+  user-select: none;
+
+  @extend %animation-fadeIn;
+
+  @include media-surface {
+    font-size: 0.7em;
+  }
+
+  th,
+  td {
+    padding: 0.4rem 0.2rem;
+    border: 1px solid $color-shadow-light;
+    text-align: center;
+  
+    @include media-mobile {
+      padding: 0.2rem 0.1rem;
+    }
+  }
+}
+
+.table_body {
+  background-color: $color-background;
+}
+
+.table_head {
+  background-color: $color-shadow-light;
+
+  td {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    font-size: 0.75em;
+  }
+}
+
+.table_row {
+  @extend %transition-hover;
+
+  @include media-hover {
+    &:hover {
+      background-color: $color-shadow-light;
+    }
+  }
+}
+
+.table_cell__info {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  border: none;
+
+  text-align: center;
+}
+
+.table_cell__name {
+  & p {
+    text-align: left;
+  }
+
+  & p:last-child {
+    padding-top: 0.2rem;
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+}
+
+.error {
+  width: 100%;
+  max-width: 40rem;
+  padding: 0.5rem;
+  margin-top: 2rem;
+
+  background-color: $color-background-dialog;
+  color: $color-text-dialog;
+
+  box-shadow: $box-shadow-dialog;
+
+  border-radius: $radius-border-view;
+
+  font-size: inherit;
+
+  user-select: none;
+
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+  -moz-animation: fadeIn ease 1s;
+  -o-animation: fadeIn ease 1s;
+  -ms-animation: fadeIn ease 1s;
+}
+
+.loader {
+  margin-top: 2rem;
+  width: 8rem;
+}
