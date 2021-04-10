@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useTypedSelector } from '../hooks';
+import { initialSettingsState } from '../../store/reducers/game-settings-reducer';
 import { updateGameUserNick } from '../../store/action-creators/settings';
 
 import s from './settings-form.module.scss';
@@ -14,6 +15,13 @@ const SettingsForm: React.FC = () => {
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = evt.target;
     dispatch(updateGameUserNick(value));
+  };
+
+  const handleBlur = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = evt.target;
+    if (!value) {
+      dispatch(updateGameUserNick(initialSettingsState.userNick));
+    }
   };
 
   //   dispatch(updateMusicVolume(1));
@@ -33,6 +41,7 @@ const SettingsForm: React.FC = () => {
             name={'updateGameUserNick'}
             autoComplete='off'
             value={userNick}
+            onBlur={handleBlur}
             onChange={handleChange} />
       </div>
 
